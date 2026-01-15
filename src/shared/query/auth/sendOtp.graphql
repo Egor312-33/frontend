@@ -1,0 +1,5 @@
+mutation SendOtp($input: SendOtpInput!) {
+  SendOtp(input: $input) {
+    ok
+  }
+}

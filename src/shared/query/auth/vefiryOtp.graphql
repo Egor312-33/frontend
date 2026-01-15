@@ -1,0 +1,5 @@
+mutation VerifyOtp($input: VerifyOtpInput!) {
+  VerifyOtp(input: $input) {
+    accessToken
+  }
+}
