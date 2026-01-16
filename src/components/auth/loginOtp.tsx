@@ -178,7 +178,6 @@ export function LoginOtpForm() {
                     </div>
                 ) : (
                     <>
-                        {/* Переключатель типа ввода */}
                         <div className="flex gap-2 p-1 bg-background rounded-xl border border-border">
                             <button
                                 type="button"
@@ -204,39 +203,15 @@ export function LoginOtpForm() {
                             </button>
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label className="text-sm font-semibold text-primary text-left">
-                                {inputType === 'email' ? 'Email' : 'Номер телефона'}
-                            </label>
-                            {inputType === 'email' ? (
-                                <Input
-                                    placeholder="ivan@example.com"
-                                    type="email"
-                                    disabled={loading}
-                                    {...register("email")}
-                                />
-
-                            ) : (
-                                <Input
-                                    placeholder="79991234567"
-                                    type="tel"
-                                    inputMode="numeric"
-                                    pattern="[0-9]*"
-                                    disabled={loading}
-                                    {...register("phone")}
-                                />
-                            )}
-                            {inputType === 'email' && errors.email && (
-                                <span className="text-destructive text-xs text-left mt-1">
-                                    {errors.email.message}
-                                </span>
-                            )}
-                            {inputType === 'phone' && errors.phone && (
-                                <span className="text-destructive text-xs text-left mt-1">
-                                    {errors.phone.message}
-                                </span>
-                            )}
-                        </div>
+                        <Input
+                            label={inputType === 'email' ? 'Email' : 'Номер телефона'}
+                            placeholder={inputType === 'email' ? 'ivan@example.com' : '79991234567'}
+                            type={inputType === 'email' ? 'email' : 'tel'}
+                            icon={inputType === 'email' ? <FaEnvelope /> : <FaPhone />}
+                            error={inputType === 'email' ? errors.email?.message : errors.phone?.message}
+                            disabled={loading}
+                            {...register(inputType === 'email' ? "email" : "phone")}
+                        />
                     </>
                 )}
 
