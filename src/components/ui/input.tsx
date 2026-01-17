@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes, ReactNode } from 'react'
-import { forwardRef } from 'react' // Добавили useId
+import { forwardRef, useId } from 'react'
 import { cn } from '../lib/utils'
 import { LuMessageCircleWarning } from 'react-icons/lu'
 
@@ -10,8 +10,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-    ({ label, id, type = 'text', icon, error, className, ...rest }, ref) => {
-
+    ({ label, type = 'text', icon, error, className, ...rest }, ref) => {
+        const id = useId()
         return (
             <div className="flex flex-col gap-1.5 w-full">
                 <label

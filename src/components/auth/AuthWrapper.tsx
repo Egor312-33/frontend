@@ -36,10 +36,9 @@ export function AuthWrapper({
             </div>
             <div className="text-center">
                 {backButtonLabel && backButtonHref && (
-                    <Typography variant='sub-title' >
+                    <Typography variant='sub-title' hover='default'>
                         <Link
                             href={backButtonHref}
-                            className="hover:text-primary transition-colors duration-200"
                         >
                             {backButtonLabel}
                         </Link>

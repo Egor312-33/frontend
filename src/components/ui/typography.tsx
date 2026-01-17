@@ -19,9 +19,12 @@ const typographyVariants = cva("", {
             "body-3": "text-sm text-muted-foreground leading-relaxed",
             "link": "font-medium text-primary underline underline-offset-4 hover:opacity-80 transition-opacity",
         },
+        hover: {
+            "default": "hover:text-primary transition-colors duration-200",
+        },
     },
     defaultVariants: {
-        variant: "body-1",
+        variant: "body-1"
     },
 });
 
@@ -38,6 +41,7 @@ export const Typography = <T extends TypographyTag = 'div'>({
     children,
     variant,
     tag,
+    hover,
     className,
     ...props
 }: TypographyProps<T>) => {
@@ -46,7 +50,7 @@ export const Typography = <T extends TypographyTag = 'div'>({
 
     return (
         <Component
-            className={cn(typographyVariants({ variant }), className)}
+            className={cn(typographyVariants({ variant, hover }), className)}
             {...props}
         >
             {children}

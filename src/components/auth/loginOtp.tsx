@@ -1,16 +1,18 @@
 "use client"
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import { useMutation } from '@apollo/client/react';
 import { SendOtpDocument, VerifyOtpDocument } from '@/shared/gql/graphql';
 import { toast } from 'sonner';
 import { AuthWrapper } from './AuthWrapper';
-import { loginSchema, TypeLoginSchema } from '@/schemes/auth/login.schema';
+import { loginSchema, type TypeLoginSchema } from '@/schemes/auth/login.schema';
 import { Button } from '@/components/ui/button';
 import { FaEnvelope, FaPhone } from 'react-icons/fa';
 import { Input } from '../ui/input';
+import { OtpInput } from './OtpInput';
+import Typography from '../ui/typography';
 
 type InputType = 'email' | 'phone';
 
@@ -18,8 +20,6 @@ export function LoginOtpForm() {
     const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
     const [isShowTwoFactor, setIsShowFactor] = useState(false)
     const [inputType, setInputType] = useState<InputType>('email')
-    const [code, setCode] = useState<string[]>(Array(6).fill(''))
-    const inputRefs = useRef<(HTMLInputElement | null)[]>([])
     const router = useRouter()
 
     const form = useForm<TypeLoginSchema>({
@@ -29,14 +29,14 @@ export function LoginOtpForm() {
             phone: "",
             code: ""
         },
-        mode: "onChange"
+        mode: "onChange",
     });
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-        getValues
+        control
     } = form;
 
     const [sendOtp, { loading: sendingOtp }] = useMutation(SendOtpDocument, {
@@ -64,74 +64,36 @@ export function LoginOtpForm() {
         },
     });
 
-    const handleCodeChange = (index: number, value: string) => {
-        if (!/^\d*$/.test(value)) return; // Только цифры
-
-        const newCode = [...code];
-        newCode[index] = value;
-        setCode(newCode);
-
-        // Автофокус на следующий input
-        if (value && index < 5) {
-            inputRefs.current[index + 1]?.focus();
-        }
-    };
-
-    const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Backspace' && !code[index] && index > 0) {
-            inputRefs.current[index - 1]?.focus();
-        }
-    };
-
-    const handlePaste = (e: React.ClipboardEvent) => {
-        e.preventDefault();
-        const pastedData = e.clipboardData.getData('text').slice(0, 6);
-        if (!/^\d+$/.test(pastedData)) return;
-
-        const newCode = pastedData.split('');
-        setCode([...newCode, ...Array(6 - newCode.length).fill('')]);
-        inputRefs.current[Math.min(pastedData.length, 5)]?.focus();
-    };
-
-    const onSubmitSendOtp = async (values: TypeLoginSchema) => {
+    const onSubmitOtp = async (values: TypeLoginSchema) => {
 
         const identifier = inputType === 'email' ? values.email : values.phone;
-
-        await sendOtp({
-            variables: {
-                input: {
-                    type: inputType,
-                    identifier: identifier || ''
+        if (!isShowTwoFactor) {
+            await sendOtp({
+                variables: {
+                    input: {
+                        type: inputType,
+                        identifier: identifier || ''
+                    },
                 },
-            },
-            context: {
-                headers: {
-                    recaptcha: recaptchaToken,
+                context: {
+                    headers: {
+                        recaptcha: recaptchaToken,
+                    },
                 },
-            },
-        });
-    };
-
-    const onSubmitVerifyOtp = async () => {
-        const codeString = code.join('');
-        if (codeString.length !== 6) {
-            toast.error('Введите 6-значный код');
-            return;
+            });
+        } else if (values.code) {
+            await verifyOtp({
+                variables: {
+                    input: {
+                        type: inputType,
+                        identifier: identifier || '',
+                        code: values.code
+                    },
+                },
+            });
         }
 
-        const identifier = inputType === 'email' ? getValues('email') : getValues('phone');
-
-        await verifyOtp({
-            variables: {
-                input: {
-                    type: inputType,
-                    identifier: identifier || '',
-                    code: codeString
-                },
-            },
-        });
     };
-
     const loading = sendingOtp || verifyingOtp;
 
     return (
@@ -143,38 +105,32 @@ export function LoginOtpForm() {
             isShowSocial
         >
             <form
-                onSubmit={handleSubmit(isShowTwoFactor ? onSubmitVerifyOtp : onSubmitSendOtp)}
+                onSubmit={handleSubmit(onSubmitOtp)}
                 className="flex flex-col gap-4"
             >
                 {isShowTwoFactor ? (
                     <div className="flex flex-col gap-4">
-                        <label className="text-sm font-semibold text-primary text-left">
-                            Код подтверждения
-                        </label>
-                        <div className="flex gap-2 justify-center" onPaste={handlePaste}>
-                            {code.map((digit, index) => (
-                                <input
-                                    key={index}
-                                    ref={(el) => (inputRefs.current[index] = el)}
-                                    className="w-12 h-14 bg-secondary-dark border-2 border-border rounded-xl text-center text-xl font-semibold text-secondary-foreground outline-none transition-all duration-200 focus:border-accent focus:bg-secondary-hover disabled:opacity-50 disabled:cursor-not-allowed"
-                                    type="text"
-                                    inputMode="numeric"
-                                    pattern="[0-9]"
-                                    maxLength={1}
-                                    value={digit}
-                                    onChange={(e) => handleCodeChange(index, e.target.value)}
-                                    onKeyDown={(e) => handleKeyDown(index, e)}
+                        <Controller
+                            control={control}
+                            name="code"
+                            render={({ field }) => (
+                                <OtpInput
+                                    label="Код подтверждения"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    error={errors.code?.message}
                                     disabled={loading}
+                                    length={6}
                                 />
-                            ))}
-                        </div>
-                        <button
-                            type="button"
+                            )}
+                        />
+                        <Typography
                             onClick={() => setIsShowFactor(false)}
-                            className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                            variant='sub-title'
+                            hover='default'
                         >
                             Изменить email/телефон
-                        </button>
+                        </Typography>
                     </div>
                 ) : (
                     <>
