@@ -14,12 +14,18 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "mutation refresh {\n  refresh {\n    accessToken\n  }\n}": typeof types.RefreshDocument,
     "mutation SendOtp($input: SendOtpInput!) {\n  SendOtp(input: $input) {\n    ok\n  }\n}": typeof types.SendOtpDocument,
     "mutation VerifyOtp($input: VerifyOtpInput!) {\n  VerifyOtp(input: $input) {\n    accessToken\n  }\n}": typeof types.VerifyOtpDocument,
+    "query TelegramInit {\n  telegramInit\n}": typeof types.TelegramInitDocument,
+    "query testInit {\n  testInit\n}": typeof types.TestInitDocument,
 };
 const documents: Documents = {
+    "mutation refresh {\n  refresh {\n    accessToken\n  }\n}": types.RefreshDocument,
     "mutation SendOtp($input: SendOtpInput!) {\n  SendOtp(input: $input) {\n    ok\n  }\n}": types.SendOtpDocument,
     "mutation VerifyOtp($input: VerifyOtpInput!) {\n  VerifyOtp(input: $input) {\n    accessToken\n  }\n}": types.VerifyOtpDocument,
+    "query TelegramInit {\n  telegramInit\n}": types.TelegramInitDocument,
+    "query testInit {\n  testInit\n}": types.TestInitDocument,
 };
 
 /**
@@ -39,11 +45,23 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "mutation refresh {\n  refresh {\n    accessToken\n  }\n}"): (typeof documents)["mutation refresh {\n  refresh {\n    accessToken\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "mutation SendOtp($input: SendOtpInput!) {\n  SendOtp(input: $input) {\n    ok\n  }\n}"): (typeof documents)["mutation SendOtp($input: SendOtpInput!) {\n  SendOtp(input: $input) {\n    ok\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation VerifyOtp($input: VerifyOtpInput!) {\n  VerifyOtp(input: $input) {\n    accessToken\n  }\n}"): (typeof documents)["mutation VerifyOtp($input: VerifyOtpInput!) {\n  VerifyOtp(input: $input) {\n    accessToken\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query TelegramInit {\n  telegramInit\n}"): (typeof documents)["query TelegramInit {\n  telegramInit\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query testInit {\n  testInit\n}"): (typeof documents)["query testInit {\n  testInit\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

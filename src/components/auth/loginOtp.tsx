@@ -13,6 +13,7 @@ import { FaEnvelope, FaPhone } from 'react-icons/fa';
 import { Input } from '../ui/input';
 import { OtpInput } from './OtpInput';
 import Typography from '../ui/typography';
+import { cn } from '../lib/utils';
 
 type InputType = 'email' | 'phone';
 
@@ -56,7 +57,7 @@ export function LoginOtpForm() {
         onCompleted: (data) => {
             if (data.VerifyOtp?.accessToken) {
                 toast.success('Вход выполнен успешно!');
-                router.push('/');
+                router.replace('/');
             }
         },
         onError() {
@@ -92,9 +93,9 @@ export function LoginOtpForm() {
                 },
             });
         }
-
     };
     const loading = sendingOtp || verifyingOtp;
+
 
     return (
         <AuthWrapper
@@ -138,10 +139,10 @@ export function LoginOtpForm() {
                             <button
                                 type="button"
                                 onClick={() => setInputType('email')}
-                                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${inputType === 'email'
-                                    ? 'bg-primary text-primary-foreground shadow-md'
-                                    : 'text-muted-foreground hover:text-foreground'
-                                    }`}
+                                className={cn('flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer',
+                                    inputType === 'email' && 'bg-primary text-primary-foreground shadow-md',
+                                    inputType === 'phone' && 'text-muted-foreground hover:text-foreground'
+                                )}
                             >
                                 <FaEnvelope />
                                 Email
@@ -149,10 +150,10 @@ export function LoginOtpForm() {
                             <button
                                 type="button"
                                 onClick={() => setInputType('phone')}
-                                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${inputType === 'phone'
-                                    ? 'bg-primary text-primary-foreground shadow-md'
-                                    : 'text-muted-foreground hover:text-foreground'
-                                    }`}
+                                className={cn('flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer',
+                                    inputType === 'phone' && 'bg-primary text-primary-foreground shadow-md',
+                                    inputType === 'email' && 'text-muted-foreground hover:text-foreground'
+                                )}
                             >
                                 <FaPhone />
                                 Телефон
@@ -180,6 +181,6 @@ export function LoginOtpForm() {
                     {isShowTwoFactor ? 'Подтвердить код' : 'Получить код'}
                 </Button>
             </form>
-        </AuthWrapper>
+        </AuthWrapper >
     );
 }

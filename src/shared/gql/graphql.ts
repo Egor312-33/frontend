@@ -38,6 +38,7 @@ export type MutationVerifyOtpArgs = {
 export type Query = {
   __typename?: 'Query';
   telegramInit: Scalars['Boolean']['output'];
+  testInit: Scalars['Boolean']['output'];
 };
 
 /** Данные для Otp */
@@ -65,6 +66,11 @@ export type VerifyOtpPayload = {
   refreshToken: Scalars['String']['output'];
 };
 
+export type RefreshMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RefreshMutation = { __typename?: 'Mutation', refresh: { __typename?: 'VerifyOtpPayload', accessToken: string } };
+
 export type SendOtpMutationVariables = Exact<{
   input: SendOtpInput;
 }>;
@@ -79,6 +85,19 @@ export type VerifyOtpMutationVariables = Exact<{
 
 export type VerifyOtpMutation = { __typename?: 'Mutation', VerifyOtp: { __typename?: 'VerifyOtpPayload', accessToken: string } };
 
+export type TelegramInitQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type TelegramInitQuery = { __typename?: 'Query', telegramInit: boolean };
+
+export type TestInitQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TestInitQuery = { __typename?: 'Query', testInit: boolean };
+
+
+export const RefreshDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"refresh"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"refresh"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<RefreshMutation, RefreshMutationVariables>;
 export const SendOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SendOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SendOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SendOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}}]}}]}}]} as unknown as DocumentNode<SendOtpMutation, SendOtpMutationVariables>;
 export const VerifyOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"VerifyOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"VerifyOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"VerifyOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<VerifyOtpMutation, VerifyOtpMutationVariables>;
+export const TelegramInitDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TelegramInit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"telegramInit"}}]}}]} as unknown as DocumentNode<TelegramInitQuery, TelegramInitQueryVariables>;
+export const TestInitDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"testInit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"testInit"}}]}}]} as unknown as DocumentNode<TestInitQuery, TestInitQueryVariables>;
