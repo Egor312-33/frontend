@@ -1,8 +1,7 @@
 import { SERVER_URL, WEBSOCKET_URL } from '@/libs/constants/url.constants';
-import { CombinedGraphQLErrors, type ApolloLink } from '@apollo/client';
-import { from } from '@apollo/client';
-import { ApolloClient, InMemoryCache, split, Observable } from '@apollo/client'
-import { setContext } from '@apollo/client/link/context';
+import { ApolloLink, CombinedGraphQLErrors } from '@apollo/client';
+import { ApolloClient, InMemoryCache, Observable } from '@apollo/client'
+import { SetContextLink } from '@apollo/client/link/context';
 import { ErrorLink } from '@apollo/client/link/error';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { getMainDefinition } from '@apollo/client/utilities';
@@ -11,11 +10,12 @@ import { print } from 'graphql';
 import { createClient } from 'graphql-ws'
 import { RefreshDocument } from './gql/graphql';
 
-const authLink = setContext((_, { headers }) => {
+const authLink = new SetContextLink((prevContext) => {
     const token = localStorage.getItem('accessToken');
+
     return {
         headers: {
-            ...headers,
+            ...prevContext.headers,
             authorization: token ? `Bearer ${token}` : "",
         }
     };
@@ -106,7 +106,7 @@ const wsLink = new GraphQLWsLink(
     })
 )
 
-const splitLink = split(
+const splitLink = ApolloLink.split(
     ({ query }) => {
         const definition = getMainDefinition(query)
 
@@ -120,6 +120,6 @@ const splitLink = split(
 )
 
 export const client = new ApolloClient({
-    link: from([errorLink, authLink, splitLink]),
+    link: ApolloLink.from([errorLink, authLink, splitLink]),
     cache: new InMemoryCache(),
 })

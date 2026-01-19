@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,6 +20,7 @@
     "graphql-ws": "^6.0.6",
     "input-otp": "^1.4.2",
     "next": "16.1.1",
+    "next-intl": "^4.7.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.1",
