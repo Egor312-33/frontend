@@ -1,4 +1,4 @@
-
+"use server"
 import Link from 'next/link'
 import { type PropsWithChildren } from 'react'
 import Typography from '../ui/typography'
@@ -11,7 +11,7 @@ interface AuthWrapperProps {
     isShowSocial?: boolean
 }
 
-export function AuthWrapper({
+export async function AuthWrapper({
     children,
     heading,
     description,

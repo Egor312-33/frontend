@@ -8,7 +8,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import UploadHttpLink from 'apollo-upload-client/UploadHttpLink.mjs';
 import { print } from 'graphql';
 import { createClient } from 'graphql-ws'
-import { RefreshDocument } from './gql/graphql';
+import { RefreshTokensDocument } from './gql/graphql';
 
 const authLink = new SetContextLink((prevContext) => {
     const token = localStorage.getItem('accessToken');
@@ -56,7 +56,7 @@ const errorLink = new ErrorLink(({ error, operation, forward }) => {
                 fetch(SERVER_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query: print(RefreshDocument) }),
+                    body: JSON.stringify({ query: print(RefreshTokensDocument) }),
                     credentials: 'include',
                 })
                     .then((res) => res.json())

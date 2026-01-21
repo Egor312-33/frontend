@@ -196,5 +196,41 @@
             }
         }
     },
-    "auth": {}
+    "auth": {
+        "login": {
+            "metadata": {
+                "title": "Authorization",
+                "description": "Log in to TrashStreamers via Email, phone number, or other resources. Get a one-time password (OTP) for instant access to your account."
+            },
+            "wrapper": {
+                "heading": "Authorization",
+                "description": "Enter your email or phone number to receive an access code",
+                "backButtonLabel": "Don't have an account yet? You can complete the full registration"
+            },
+            "otp": {
+                "sendotp": {
+                    "successMessage": "Code sent!",
+                    "errorMessage": "Error sending code"
+                },
+                "verifyotp": {
+                    "successMessage": "Logged in successfully!",
+                    "errorMessage": "Invalid code"
+                },
+                "otpInputLabel": "Verification Code",
+                "email": {
+                    "label": "Email",
+                    "changeLabel": "Change email"
+                },
+                "phone": {
+                    "label": "Phone Number",
+                    "changeLabel": "Change phone"
+                },
+                "code": {
+                    "label": "Verification Code",
+                    "confirm": "Confirm code",
+                    "get": "Get code"
+                }
+            }
+        }
+    }
 }

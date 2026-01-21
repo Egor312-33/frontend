@@ -1,5 +1,5 @@
 mutation VerifyOtp($input: VerifyOtpInput!) {
-  VerifyOtp(input: $input) {
+  verifyOtp(input: $input) {
     accessToken
   }
 }

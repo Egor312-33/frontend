@@ -1,5 +1,5 @@
 mutation SendOtp($input: SendOtpInput!) {
-  SendOtp(input: $input) {
+  sendOtp(input: $input) {
     ok
   }
 }

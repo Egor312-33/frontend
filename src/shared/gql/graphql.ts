@@ -16,13 +16,23 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export enum AuthType {
+  Email = 'EMAIL',
+  Phone = 'PHONE',
+  Unrecognized = 'UNRECOGNIZED'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
-  SendOtp: SendOtpPayload;
-  VerifyOtp: VerifyOtpPayload;
   loginByPassword: Scalars['Boolean']['output'];
-  logout: Scalars['Boolean']['output'];
-  refresh: VerifyOtpPayload;
+  /** Clears the refresh token cookie and logs the user out. */
+  logoutUser: Scalars['Boolean']['output'];
+  /** Issues a new access token using the refresh token from cookies. */
+  refreshTokens: VerifyOtpPayload;
+  /** Sends a one-time password (OTP) to the provided email or phone number. */
+  sendOtp: SendOtpPayload;
+  /** Verifies the OTP and sets a secure refresh token cookie. Returns an access token. */
+  verifyOtp: VerifyOtpPayload;
 };
 
 
@@ -41,63 +51,57 @@ export type Query = {
   testInit: Scalars['Boolean']['output'];
 };
 
-/** Данные для Otp */
+/** Data required to request a new one-time password (OTP) */
 export type SendOtpInput = {
-  /** Номер телефона пользователя */
+  /** User identifier where the code will be sent (email or phone) */
   identifier: Scalars['String']['input'];
-  type: Scalars['String']['input'];
+  /** Method of delivery for the OTP */
+  type: AuthType;
 };
 
+/** Result of the OTP request */
 export type SendOtpPayload = {
   __typename?: 'SendOtpPayload';
+  /** Indicates if the OTP was successfully sent */
   ok: Scalars['Boolean']['output'];
 };
 
-/** Данные для верификации */
+/** Data required to verify the one-time password (OTP) */
 export type VerifyOtpInput = {
+  /** The 6-digit verification code received by the user */
   code: Scalars['String']['input'];
+  /** User identifier (email address or phone number) */
   identifier: Scalars['String']['input'];
-  type: Scalars['String']['input'];
+  /** The delivery method used for the OTP */
+  type: AuthType;
 };
 
 export type VerifyOtpPayload = {
   __typename?: 'VerifyOtpPayload';
+  /** JWT access token for authorized requests */
   accessToken: Scalars['String']['output'];
-  refreshToken: Scalars['String']['output'];
 };
 
-export type RefreshMutationVariables = Exact<{ [key: string]: never; }>;
+export type RefreshTokensMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RefreshMutation = { __typename?: 'Mutation', refresh: { __typename?: 'VerifyOtpPayload', accessToken: string } };
+export type RefreshTokensMutation = { __typename?: 'Mutation', refreshTokens: { __typename?: 'VerifyOtpPayload', accessToken: string } };
 
 export type SendOtpMutationVariables = Exact<{
   input: SendOtpInput;
 }>;
 
 
-export type SendOtpMutation = { __typename?: 'Mutation', SendOtp: { __typename?: 'SendOtpPayload', ok: boolean } };
+export type SendOtpMutation = { __typename?: 'Mutation', sendOtp: { __typename?: 'SendOtpPayload', ok: boolean } };
 
 export type VerifyOtpMutationVariables = Exact<{
   input: VerifyOtpInput;
 }>;
 
 
-export type VerifyOtpMutation = { __typename?: 'Mutation', VerifyOtp: { __typename?: 'VerifyOtpPayload', accessToken: string } };
-
-export type TelegramInitQueryVariables = Exact<{ [key: string]: never; }>;
+export type VerifyOtpMutation = { __typename?: 'Mutation', verifyOtp: { __typename?: 'VerifyOtpPayload', accessToken: string } };
 
 
-export type TelegramInitQuery = { __typename?: 'Query', telegramInit: boolean };
-
-export type TestInitQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TestInitQuery = { __typename?: 'Query', testInit: boolean };
-
-
-export const RefreshDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"refresh"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"refresh"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<RefreshMutation, RefreshMutationVariables>;
-export const SendOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SendOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SendOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SendOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}}]}}]}}]} as unknown as DocumentNode<SendOtpMutation, SendOtpMutationVariables>;
-export const VerifyOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"VerifyOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"VerifyOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"VerifyOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<VerifyOtpMutation, VerifyOtpMutationVariables>;
-export const TelegramInitDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TelegramInit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"telegramInit"}}]}}]} as unknown as DocumentNode<TelegramInitQuery, TelegramInitQueryVariables>;
-export const TestInitDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"testInit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"testInit"}}]}}]} as unknown as DocumentNode<TestInitQuery, TestInitQueryVariables>;
+export const RefreshTokensDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RefreshTokens"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"refreshTokens"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<RefreshTokensMutation, RefreshTokensMutationVariables>;
+export const SendOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SendOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SendOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sendOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}}]}}]}}]} as unknown as DocumentNode<SendOtpMutation, SendOtpMutationVariables>;
+export const VerifyOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"VerifyOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"VerifyOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<VerifyOtpMutation, VerifyOtpMutationVariables>;
