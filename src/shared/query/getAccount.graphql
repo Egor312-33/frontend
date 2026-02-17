@@ -1,0 +1,14 @@
+query GetAccount {
+  GetAccount {
+    userId
+    user {
+      avatar
+      displayName
+      userName
+    }
+    phone
+    email
+    createdAt
+    updatedAt
+  }
+}

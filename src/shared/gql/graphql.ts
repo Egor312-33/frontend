@@ -14,6 +14,31 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: { input: any; output: any; }
+};
+
+export type AccountModel = {
+  __typename?: 'AccountModel';
+  /** Account last update date */
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User email address */
+  email?: Maybe<Scalars['String']['output']>;
+  /** Unique identifier of the account */
+  id: Scalars['ID']['output'];
+  /** Flag indicating if email is verified */
+  isEmailVerified: Scalars['Boolean']['output'];
+  /** Flag indicating if phone is verified */
+  isPhoneVerified: Scalars['Boolean']['output'];
+  /** User phone number */
+  phone?: Maybe<Scalars['String']['output']>;
+  /** Account role (USER, ADMIN, etc.) */
+  role: Role;
+  /** Account creation date */
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  user?: Maybe<UserModel>;
+  /** Associated User ID */
+  userId?: Maybe<Scalars['String']['output']>;
 };
 
 export enum AuthType {
@@ -21,6 +46,10 @@ export enum AuthType {
   Phone = 'PHONE',
   Unrecognized = 'UNRECOGNIZED'
 }
+
+export type GetAccountsInput = {
+  ids: Array<Scalars['String']['input']>;
+};
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -47,9 +76,35 @@ export type MutationVerifyOtpArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  GetAccount: AccountModel;
+  GetAccounts: Array<AccountModel>;
+  getMe?: Maybe<UserModel>;
+  getUsers: Array<UserModel>;
   telegramInit: Scalars['Boolean']['output'];
   testInit: Scalars['Boolean']['output'];
 };
+
+
+export type QueryGetAccountsArgs = {
+  input: GetAccountsInput;
+};
+
+
+export type QueryGetMeArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryGetUsersArgs = {
+  ids: Array<Scalars['String']['input']>;
+};
+
+/** User roles in the system */
+export enum Role {
+  Admin = 'ADMIN',
+  Unrecognized = 'UNRECOGNIZED',
+  User = 'USER'
+}
 
 /** Data required to request a new one-time password (OTP) */
 export type SendOtpInput = {
@@ -64,6 +119,14 @@ export type SendOtpPayload = {
   __typename?: 'SendOtpPayload';
   /** Indicates if the OTP was successfully sent */
   ok: Scalars['Boolean']['output'];
+};
+
+export type UserModel = {
+  __typename?: 'UserModel';
+  avatar?: Maybe<Scalars['String']['output']>;
+  displayName?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  userName?: Maybe<Scalars['String']['output']>;
 };
 
 /** Data required to verify the one-time password (OTP) */
@@ -81,6 +144,11 @@ export type VerifyOtpPayload = {
   /** JWT access token for authorized requests */
   accessToken: Scalars['String']['output'];
 };
+
+export type LogoutUserMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LogoutUserMutation = { __typename?: 'Mutation', logoutUser: boolean };
 
 export type RefreshTokensMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -101,7 +169,14 @@ export type VerifyOtpMutationVariables = Exact<{
 
 export type VerifyOtpMutation = { __typename?: 'Mutation', verifyOtp: { __typename?: 'VerifyOtpPayload', accessToken: string } };
 
+export type GetAccountQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type GetAccountQuery = { __typename?: 'Query', GetAccount: { __typename?: 'AccountModel', userId?: string | null, phone?: string | null, email?: string | null, createdAt?: any | null, updatedAt?: any | null, user?: { __typename?: 'UserModel', avatar?: string | null, displayName?: string | null, userName?: string | null } | null } };
+
+
+export const LogoutUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LogoutUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logoutUser"}}]}}]} as unknown as DocumentNode<LogoutUserMutation, LogoutUserMutationVariables>;
 export const RefreshTokensDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RefreshTokens"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"refreshTokens"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<RefreshTokensMutation, RefreshTokensMutationVariables>;
 export const SendOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SendOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SendOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sendOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}}]}}]}}]} as unknown as DocumentNode<SendOtpMutation, SendOtpMutationVariables>;
 export const VerifyOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"VerifyOtp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"VerifyOtpInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyOtp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<VerifyOtpMutation, VerifyOtpMutationVariables>;
+export const GetAccountDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAccount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"GetAccount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"avatar"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<GetAccountQuery, GetAccountQueryVariables>;

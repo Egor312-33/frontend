@@ -1,5 +1,5 @@
 import { OTPInput, SlotProps } from 'input-otp'
-import { LuMessageCircleWarning } from 'react-icons/lu'
+import { MessageCircleWarning } from 'lucide-react'
 import { cn } from '../lib/utils'
 
 interface OtpInputProps {
@@ -35,7 +35,7 @@ export const OtpInput = ({ label, value, onChange, error, disabled, length = 6 }
 
             {error && (
                 <div className="flex items-center gap-1 text-destructive self-start mt-1">
-                    <LuMessageCircleWarning className="size-4" />
+                    <MessageCircleWarning className="size-4" />
                     <span className="text-xs font-medium">{error}</span>
                 </div>
             )}

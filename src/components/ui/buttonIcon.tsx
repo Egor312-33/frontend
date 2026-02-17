@@ -1,7 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { FaPencilAlt, FaTrash } from "react-icons/fa";
-import { LuX } from "react-icons/lu";
+import { Pencil, Trash, X } from "lucide-react";
 
 const buttonIconVariants = cva(
     'inline-flex items-center justify-center rounded-xl cursor-pointer transition-all duration-200 disabled:opacity-50 [&_svg]:w-4 [&_svg]:h-4',
@@ -45,7 +44,6 @@ export function ButtonIcon({
     size,
     loading = false,
     disabled,
-    iconLu = false,
     children,
     ...props
 }: ButtonIconProps) {
@@ -53,13 +51,13 @@ export function ButtonIcon({
 
     switch (variant) {
         case "remove":
-            icon = <FaTrash />;
+            icon = <Trash />;
             break;
         case "change":
-            icon = <FaPencilAlt />;
+            icon = <Pencil />;
             break;
         case "x":
-            icon = <LuX />;
+            icon = <X />;
             break;
     }
 
@@ -70,9 +68,7 @@ export function ButtonIcon({
         <button
             type="button"
             className={cn(
-                buttonIconVariants({ variant, size, iconLu, className }),
-                !iconLu && '[&_svg]:fill-current',
-                iconLu && '[&_svg]:fill-none',
+                buttonIconVariants({ variant, size, className }),
                 isLoading && 'cursor-wait',
                 isDisabled && 'cursor-not-allowed',
                 !isLoading && !isDisabled && 'cursor-pointer'

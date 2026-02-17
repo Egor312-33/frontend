@@ -61,7 +61,7 @@ const errorLink = new ErrorLink(({ error, operation, forward }) => {
                 })
                     .then((res) => res.json())
                     .then((res) => {
-                        const newToken = res.data?.refresh?.accessToken;
+                        const newToken = res.data?.refreshTokens?.accessToken;
 
                         if (newToken && !res.errors) {
                             localStorage.setItem('accessToken', newToken);
