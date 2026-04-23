@@ -1,0 +1,19 @@
+query GetSettingVideoBySlug($slug: String!) {
+	getSettingVideoBySlug(slug: $slug) {
+		access
+		categories {
+			id
+		}
+		createdAt
+		description
+		durationSeconds
+		id
+		ownerId
+		path
+		slug
+		status
+		thumbnailUrl
+		title
+		updatedAt
+	}
+}

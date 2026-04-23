@@ -1,0 +1,20 @@
+mutation UpdateSettingsVideo($categoryId: [String!]!, $input: UpdateVideoInput!, $slug: String!) {
+	updateSettingsVideo(categoryId: $categoryId, input: $input, slug: $slug) {
+		access
+		categories {
+			id
+		}
+		createdAt
+		description
+		durationSeconds
+		id
+		ownerId
+		path
+		status
+		thumbnailUrl
+		title
+		slug
+		slug
+		updatedAt
+	}
+}

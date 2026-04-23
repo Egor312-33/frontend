@@ -33,6 +33,7 @@ export const UserButton = memo(function UserButton() {
 	const t = useTranslations('layout.header.headerMenu.profileMenu')
 
 	const { user } = useCurrent()
+	console.log('user', user)
 	const router = useRouter()
 
 	const [logout] = useMutation(LogoutUserDocument, {
@@ -53,7 +54,7 @@ export const UserButton = memo(function UserButton() {
 				<MenuButton className='focus:ring-primary cursor-pointer rounded-full border-none bg-transparent p-0 transition-all duration-200 ease-in-out hover:scale-105 hover:opacity-80 focus:ring-2 focus:ring-offset-2 focus:outline-none'>
 					{user.user?.avatar ? (
 						<Image
-							src={`${getMediaSource(user.user?.avatar)}?v=${user?.updatedAt}`}
+							src={`${getMediaSource(user.user?.avatar)}?v=${user.user.updatedAt}`}
 							alt='Аватар'
 							width={50}
 							height={50}
@@ -82,8 +83,10 @@ export const UserButton = memo(function UserButton() {
 							<div className='shrink-0'>
 								{user.user?.avatar ? (
 									<Image
-										src={`${getMediaSource(user.user?.avatar)}?v=${user?.updatedAt}`}
+										src={`${getMediaSource(user.user?.avatar)}?v=${user?.user.updatedAt}`}
 										alt='Аватар'
+										width={50}
+										height={50}
 										className='border-border h-12 w-12 rounded-full border-2 object-cover'
 									/>
 								) : (

@@ -1,0 +1,3 @@
+mutation DeleteAvatarProfile($key: String!) {
+	deleteAvatarProfile(key: $key)
+}

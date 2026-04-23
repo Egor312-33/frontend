@@ -1,0 +1,6 @@
+mutation UpdateAvatarProfile($avatar: Upload!) {
+	updateAvatarProfile(avatar: $avatar) {
+		key
+		updatedAt
+	}
+}

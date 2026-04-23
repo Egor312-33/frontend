@@ -1,0 +1,19 @@
+query GetPublicVideoBySlug($slug: String!) {
+	getPublicVideoBySlug(slug: $slug) {
+		access
+		categories {
+			id
+		}
+		createdAt
+		description
+		durationSeconds
+		id
+		ownerId
+		path
+		slug
+		status
+		thumbnailUrl
+		title
+		updatedAt
+	}
+}

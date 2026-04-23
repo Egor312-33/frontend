@@ -1,0 +1,16 @@
+mutation CreateCategoryVideo($image: Upload!, $input: CreateCategoryInput!) {
+	createCategoryVideo(image: $image, input: $input) {
+		createdAt
+		id
+		slug
+		targets
+		thumbnailUrl
+		translations {
+			description
+			id
+			language
+			title
+		}
+		updatedAt
+	}
+}

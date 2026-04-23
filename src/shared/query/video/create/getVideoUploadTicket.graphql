@@ -1,0 +1,7 @@
+query GetVideoUploadTicket($contentType: String!, $fileName: String!) {
+	getVideoUploadTicket(contentType: $contentType, fileName: $fileName) {
+		fileKey
+		uploadUrl
+		videoId
+	}
+}

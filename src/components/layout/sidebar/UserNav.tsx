@@ -14,7 +14,7 @@ const routes: Route[] = [
 	},
 	{
 		label: 'categories',
-		href: '/categories',
+		href: '/category',
 		icon: Folder
 	},
 	{

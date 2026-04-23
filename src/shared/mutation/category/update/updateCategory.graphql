@@ -1,0 +1,16 @@
+mutation UpdateCategory($image: Upload, $input: UpdateCategoryInput!, $slug: String!) {
+	updateCategory(image: $image, input: $input, slug: $slug) {
+		createdAt
+		id
+		slug
+		targets
+		thumbnailUrl
+		translations {
+			description
+			id
+			language
+			title
+		}
+		updatedAt
+	}
+}

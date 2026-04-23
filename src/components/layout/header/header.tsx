@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { UserButton } from '@/components/user/userButton'
+import { UserCreateButton } from '@/components/user/userCreateButton/userCreateButton'
 
 import { useCurrent } from '@/hooks/useCurrent'
 import { useSidebar } from '@/hooks/useSidebar'
@@ -45,7 +46,7 @@ export function Header() {
 						className='shrink-0'
 					/>
 					<span className='hidden text-base font-medium sm:inline'>
-						Stray228freak
+						trash-streamers
 					</span>
 				</Link>
 			</div>
@@ -83,7 +84,10 @@ export function Header() {
 				className={`flex items-center gap-2 ${isSearchOpen ? 'hidden md:flex' : 'flex'}`}
 			>
 				{user ? (
-					<UserButton />
+					<>
+						<UserCreateButton />
+						<UserButton />
+					</>
 				) : (
 					<Link href='/auth/login/otp'>
 						<Button size='sm' variant='default'>

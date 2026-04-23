@@ -1,17 +1,18 @@
-"use client"
+'use client'
 
-import { GetAccountDocument } from '@/shared/gql/graphql';
-import { useQuery, } from '@apollo/client/react';
+import { useQuery } from '@apollo/client/react'
+
+import { GetAccountDocument } from '@/shared/gql/graphql'
 
 export function useCurrent() {
-    const { data, loading, error, refetch } = useQuery(GetAccountDocument, {
-        fetchPolicy: "network-only",
-    });
+	const { data, loading, error, refetch } = useQuery(GetAccountDocument, {
+		fetchPolicy: 'cache-and-network'
+	})
 
-    return {
-        user: data?.GetAccount ?? null,
-        isLoadingProfile: loading,
-        refetch,
-        isError: Boolean(error),
-    };
+	return {
+		user: data?.GetAccount ?? null,
+		isLoadingProfile: loading,
+		refetch,
+		isError: Boolean(error)
+	}
 }

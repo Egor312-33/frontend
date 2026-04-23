@@ -1,0 +1,15 @@
+query GetAllVideosOwner {
+	getAllVideosOwner {
+		access
+		createdAt
+		description
+		durationSeconds
+		ownerId
+		path
+		slug
+		status
+		thumbnailUrl
+		title
+		updatedAt
+	}
+}

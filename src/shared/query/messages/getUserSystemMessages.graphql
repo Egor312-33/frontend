@@ -1,0 +1,18 @@
+query GetUserSystemMessages($publicKey: String!) {
+  getUserSystemMessages(publicKey: $publicKey) {
+    chatId
+    encryptedChatKey
+    messages {
+      authTag
+      chatId
+      content
+      createdAt
+      id
+      initialVector
+      isDeleted
+      isEdited
+      senderId
+      updatedAt
+    }
+  }
+}

@@ -1,0 +1,8 @@
+subscription SecurityNotification {
+  securityNotification {
+    authTag
+    content
+    iv
+    messageId
+  }
+}

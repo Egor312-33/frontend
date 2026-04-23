@@ -1,236 +1,244 @@
 {
-    "home": {
-        "title": "Home page"
-    },
-    "layout": {
-        "header": {
-            "logo": {
-                "platform": "Streaming platform"
-            },
-            "headerMenu": {
-                "login": "Sign In",
-                "register": "Sign Up",
-                "profileMenu": {
-                    "notifications": {
-                        "heading": "Notifications",
-                        "loading": "Loading...",
-                        "empty": "You have no notifications"
-                    },
-                    "successMessage": "Successfully logged out",
-                    "errorMessage": "Logout error",
-                    "userProfile": "My profile",
-                    "dashboard": "Dashboard",
-                    "logout": "Sign out"
-                }
-            },
-            "search": {
-                "placeholder": "Search"
-            }
-        },
-        "sidebar": {
-            "headersNav": {
-                "management": "Management"
-            },
-            "dashboardNav": {
-                "content": "Content",
-                "settings": "Settings",
-                "streamSettings": "Stream Settings",
-                "chatSettings": "Chat Settings",
-                "followers": "Followers",
-                "home": "Home",
-                "heroName": "Stray228",
-                "culture": "Culture",
-                "lightbulb": "Lightbulb"
-            }
-        }
-    },
-    "dashboard": {
-        "settings": {
-            "heading": {
-                "header": "Settings",
-                "placeholder": "Managing your profile and account settings"
-            },
-            "profile": {
-                "header": {
-                    "heading": "Profile",
-                    "description": "Customize your profile by changing your avatar, personal information, and social media links. Update your information so that other users can learn more about you."
-                },
-                "avatar": {
-                    "heading": "Profile Image",
-                    "updateButton": "Update Profile Image",
-                    "confirmModal": {
-                        "heading": "Remove Avatar",
-                        "message": "Are you sure you want to remove your profile image? This action cannot be undone.",
-                        "confirm": "Delete",
-                        "cancel": "Сancel"
-                    },
-                    "info": "Supported formats: JPG, JPEG, PNG, WEBP or GIF. Max size: 10 MB.",
-                    "successUpdateMessage": "Profile image updated successfully.",
-                    "errorUpdateMessage": "Error updating profile image.",
-                    "successRemoveMessage": "Profile image removed successfully.",
-                    "errorRemoveMessage": "Error removing profile image."
-                },
-                "info": {
-                    "heading": "Profile Settings",
-                    "usernameLabel": "Username",
-                    "usernamePlaceholder": "john434",
-                    "usernameDescription": "This is how other users will know you.",
-                    "displayNameLabel": "Display Name",
-                    "displayNamePlaceholder": "John Doe",
-                    "displayNameDescription": "You can use uppercase letters in your display name as you wish.",
-                    "bioLabel": "About Me",
-                    "bioPlaceholder": "General gachi of the Army",
-                    "bioDescription": "The information about yourself should contain no more than 300 characters.",
-                    "successMessage": "Profile successfully updated",
-                    "errorMessage": "Error updating profile",
-                    "submitButton": "Save Changes"
-                },
-                "socialLinks": {
-                    "createForm": {
-                        "heading": "Social Media Links",
-                        "titleLabel": "Link Title",
-                        "titlePlaceholder": "Youtube",
-                        "titleDescription": "Come up with a name for your link, for example Youtube",
-                        "urlLabel": "Link URL",
-                        "urlPlaceholder": "https://stray228freak.ru",
-                        "urlDescription": "Enter the full URL, for example https://stray228freak.ru",
-                        "submitButton": "Add",
-                        "successMessage": "Successful link addition",
-                        "errorMessage": "Link addition error"
-                    },
-                    "editForm": {
-                        "cancelButton": "Cancel",
-                        "submitButton": "Save",
-                        "confirmButton": "Delete",
-                        "titleDelete": "Deleting a link",
-                        "descriptionDelete": "Are you sure you want to delete the link? This action cannot be undone.",
-                        "successUpdateMessage": "Successful link change",
-                        "errorUpdateMessage": "Link modification error",
-                        "successRemoveMessage": "Successful link deletion",
-                        "errorRemoveMessage": "Link deletion error"
-                    },
-                    "viewForm": {
-                        "emptyStateText": "You don't have any added social links yet",
-                        "emptyStateSubtext": "Add your social media profiles so that visitors can contact you.",
-                        "socialLinksTitle": "Your social links",
-                        "successReorderMessage": "Successful change of order",
-                        "errorReorderMessage": "Order change error"
-                    }
-                }
-            },
-            "sessions": {
-                "header": {
-                    "heading": "Sessions",
-                    "description": "Sessions are devices that you are currently using or have used to access your TeaStream account. Here you can see the active sessions right now."
-                },
-                "info": {
-                    "current": "Current session",
-                    "active": "Active sessions",
-                    "notFound": "No active sessions found"
-                },
-                "sessionItem": {
-                    "deleteButton": "Delete",
-                    "detailsButton": "Details",
-                    "confirmModal": {
-                        "heading": "Delete Session",
-                        "message": "Are you sure you want to delete this session? This action will result in the irreversible deletion of the session on this device and will terminate all active actions associated with it."
-                    },
-                    "successMessage": "Session deleted"
-                },
-                "sessionModal": {
-                    "heading": "Session Information",
-                    "device": "Device:",
-                    "location": "Location:",
-                    "ipAddress": "IP Address:",
-                    "createdAt": "Created At:"
-                }
-            }
-        },
-        "content": {
-            "heading": {
-                "header": "Content on the account",
-                "placeholder": "Manage your public and private videos and articles"
-            },
-            "videos": {
-                "header": {
-                    "heading": "Video"
-                },
-                "information": {
-                    "updateButton": "Update the video preview",
-                    "confirmModal": {
-                        "heading": "Deleting a preview",
-                        "message": "Are you sure you want to delete the video preview? This action cannot be undone",
-                        "confirm": "Remove",
-                        "cancel": "Cancel"
-                    },
-                    "info": "Supported formats: JPG, JPEG, PNG, WEBP or GIF. Max. size: 10 MB.",
-                    "successUpdateMessage": "Successful preview update",
-                    "errorUpdateMessage": "Error updating the preview",
-                    "successRemoveMessage": "Successful change of preview",
-                    "errorRemoveMessage": "Error deleting the preview"
-                },
-                "access": {
-                    "header": {
-                        "heading": "Access parameters",
-                        "description": "Specify who can watch the video."
-                    },
-                    "limitedAccess": {
-                        "header": "Limited access",
-                        "description": "The video is only available to you and your chosen users."
-                    },
-                    "openAccess": {
-                        "header": "Open access",
-                        "description": "The video is available to all users"
-                    }
-                }
-            },
-            "playlists": {
-                "header": {
-                    "heading": "Playlists"
-                }
-            },
-            "articles": {
-                "header": {
-                    "heading": "Articles"
-                }
-            }
-        }
-    },
-    "auth": {
-        "login": {
-            "metadata": {
-                "title": "Authorization",
-                "description": "Log in to TrashStreamers via Email, phone number, or other resources. Get a one-time password (OTP) for instant access to your account."
-            },
-            "wrapper": {
-                "heading": "Authorization",
-                "description": "Enter your email or phone number to receive an access code",
-                "backButtonLabel": "Don't have an account yet? You can complete the full registration"
-            },
-            "otp": {
-                "sendotp": {
-                    "successMessage": "Code sent!",
-                    "errorMessage": "Error sending code"
-                },
-                "verifyotp": {
-                    "successMessage": "Logged in successfully!",
-                    "errorMessage": "Invalid code"
-                },
-                "otpInputLabel": "Verification Code",
-                "email": {
-                    "label": "Email",
-                    "changeLabel": "Change email"
-                },
-                "phone": {
-                    "label": "Phone Number",
-                    "changeLabel": "Change phone"
-                },
-                "code": {
-                    "label": "Verification Code",
-                    "confirm": "Confirm code",
-                    "get": "Get code"
-                }
-            }
-        }
-    }
+	"home": {
+		"title": "Home page"
+	},
+	"layout": {
+		"header": {
+			"logo": {
+				"platform": "Streaming platform"
+			},
+			"headerMenu": {
+				"login": "Sign In",
+				"register": "Sign Up",
+				"profileMenu": {
+					"notifications": {
+						"heading": "Notifications",
+						"loading": "Loading...",
+						"empty": "You have no notifications"
+					},
+					"successMessage": "Successfully logged out",
+					"errorMessage": "Logout error",
+					"userProfile": "My profile",
+					"dashboard": "Dashboard",
+					"logout": "Sign out"
+				}
+			},
+			"search": {
+				"placeholder": "Search"
+			}
+		},
+		"sidebar": {
+			"headersNav": {
+				"management": "Management"
+			},
+			"dashboardNav": {
+				"content": "Content",
+				"settings": "Settings",
+				"streamSettings": "Stream Settings",
+				"chatSettings": "Chat Settings",
+				"followers": "Followers",
+				"home": "Home",
+				"heroName": "Stray228",
+				"culture": "Culture",
+				"lightbulb": "Lightbulb"
+			}
+		}
+	},
+	"dashboard": {
+		"settings": {
+			"heading": {
+				"header": "Settings",
+				"placeholder": "Manage your videos, playlists, and articles"
+			},
+			"tabs": {
+				"videos": "Video",
+				"playlists": "Playlists",
+				"articles": "Articles"
+			},
+			"profile": {
+				"header": {
+					"heading": "Profile",
+					"description": "Customize your profile by changing your avatar, personal information, and social media links. Update your information so that other users can learn more about you."
+				},
+				"avatar": {
+					"heading": "Profile Image",
+					"updateButton": "Update Profile Image",
+					"confirmModal": {
+						"heading": "Remove Avatar",
+						"message": "Are you sure you want to remove your profile image? This action cannot be undone.",
+						"confirm": "Delete",
+						"cancel": "Сancel"
+					},
+					"info": "Supported formats: JPG, JPEG, PNG, WEBP or GIF. Max size: 10 MB.",
+					"successUpdateMessage": "Profile image updated successfully.",
+					"errorUpdateMessage": "Error updating profile image.",
+					"successRemoveMessage": "Profile image removed successfully.",
+					"errorRemoveMessage": "Error removing profile image."
+				},
+				"info": {
+					"heading": "Profile Settings",
+					"usernameLabel": "Username",
+					"usernamePlaceholder": "john434",
+					"usernameDescription": "This is how other users will know you.",
+					"displayNameLabel": "Display Name",
+					"displayNamePlaceholder": "John Doe",
+					"displayNameDescription": "You can use uppercase letters in your display name as you wish.",
+					"bioLabel": "About Me",
+					"bioPlaceholder": "General gachi of the Army",
+					"bioDescription": "The information about yourself should contain no more than 300 characters.",
+					"successMessage": "Profile successfully updated",
+					"errorMessage": "Error updating profile",
+					"submitButton": "Save Changes"
+				},
+				"socialLinks": {
+					"createForm": {
+						"heading": "Social Media Links",
+						"titleLabel": "Link Title",
+						"titlePlaceholder": "Youtube",
+						"titleDescription": "Come up with a name for your link, for example Youtube",
+						"urlLabel": "Link URL",
+						"urlPlaceholder": "https://stray228freak.ru",
+						"urlDescription": "Enter the full URL, for example https://stray228freak.ru",
+						"submitButton": "Add",
+						"successMessage": "Successful link addition",
+						"errorMessage": "Link addition error"
+					},
+					"editForm": {
+						"cancelButton": "Cancel",
+						"submitButton": "Save",
+						"confirmButton": "Delete",
+						"titleDelete": "Deleting a link",
+						"descriptionDelete": "Are you sure you want to delete the link? This action cannot be undone.",
+						"successUpdateMessage": "Successful link change",
+						"errorUpdateMessage": "Link modification error",
+						"successRemoveMessage": "Successful link deletion",
+						"errorRemoveMessage": "Link deletion error"
+					},
+					"viewForm": {
+						"emptyStateText": "You don't have any added social links yet",
+						"emptyStateSubtext": "Add your social media profiles so that visitors can contact you.",
+						"socialLinksTitle": "Your social links",
+						"successReorderMessage": "Successful change of order",
+						"errorReorderMessage": "Order change error"
+					}
+				}
+			},
+			"sessions": {
+				"header": {
+					"heading": "Sessions",
+					"description": "Sessions are devices that you are currently using or have used to access your TeaStream account. Here you can see the active sessions right now."
+				},
+				"info": {
+					"current": "Current session",
+					"active": "Active sessions",
+					"notFound": "No active sessions found"
+				},
+				"sessionItem": {
+					"deleteButton": "Delete",
+					"detailsButton": "Details",
+					"confirmModal": {
+						"heading": "Delete Session",
+						"message": "Are you sure you want to delete this session? This action will result in the irreversible deletion of the session on this device and will terminate all active actions associated with it."
+					},
+					"successMessage": "Session deleted"
+				},
+				"sessionModal": {
+					"heading": "Session Information",
+					"device": "Device:",
+					"location": "Location:",
+					"ipAddress": "IP Address:",
+					"createdAt": "Created At:"
+				}
+			}
+		},
+		"content": {
+			"heading": {
+				"header": "Content on the account",
+				"placeholder": "Manage your public and private videos and articles"
+			},
+			"videos": {
+				"tabs": {
+					"video": "Video",
+					"access": "Access",
+					"views": "Views",
+					"percentage": "% Liked"
+				},
+				"information": {
+					"updateButton": "Update the video preview",
+					"confirmModal": {
+						"heading": "Deleting a preview",
+						"message": "Are you sure you want to delete the video preview? This action cannot be undone",
+						"confirm": "Remove",
+						"cancel": "Cancel"
+					},
+					"info": "Supported formats: JPG, JPEG, PNG, WEBP or GIF. Max. size: 10 MB.",
+					"successUpdateMessage": "Successful preview update",
+					"errorUpdateMessage": "Error updating the preview",
+					"successRemoveMessage": "Successful change of preview",
+					"errorRemoveMessage": "Error deleting the preview"
+				},
+				"access": {
+					"header": {
+						"heading": "Access parameters",
+						"description": "Specify who can watch the video."
+					},
+					"limitedAccess": {
+						"header": "Limited access",
+						"description": "The video is only available to you and your chosen users."
+					},
+					"openAccess": {
+						"header": "Open access",
+						"description": "The video is available to all users"
+					}
+				}
+			},
+			"playlists": {
+				"header": {
+					"heading": "Playlists"
+				}
+			},
+			"articles": {
+				"header": {
+					"heading": "Articles"
+				}
+			}
+		}
+	},
+	"auth": {
+		"login": {
+			"metadata": {
+				"title": "Authorization",
+				"description": "Log in to TrashStreamers via Email, phone number, or other resources. Get a one-time password (OTP) for instant access to your account."
+			},
+			"wrapper": {
+				"heading": "Authorization",
+				"description": "Enter your email or phone number to receive an access code",
+				"backButtonLabel": "Don't have an account yet? You can complete the full registration"
+			},
+			"otp": {
+				"sendotp": {
+					"successMessage": "Code sent!",
+					"errorMessage": "Error sending code"
+				},
+				"verifyotp": {
+					"successMessage": "Logged in successfully!",
+					"errorMessage": "Invalid code"
+				},
+				"otpInputLabel": "Verification Code",
+				"email": {
+					"label": "Email",
+					"changeLabel": "Change email"
+				},
+				"phone": {
+					"label": "Phone Number",
+					"changeLabel": "Change phone"
+				},
+				"code": {
+					"label": "Verification Code",
+					"confirm": "Confirm code",
+					"get": "Get code"
+				}
+			}
+		}
+	}
 }

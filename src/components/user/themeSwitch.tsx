@@ -5,7 +5,7 @@ import { Moon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
-import { Button } from '../ui/button'
+import { cn } from '../lib/utils'
 
 export function ThemeSwitch() {
 	const { resolvedTheme, setTheme } = useTheme()
@@ -22,27 +22,38 @@ export function ThemeSwitch() {
 	}
 
 	return (
-		<Button
-			type='button'
+		<div
+			role='button'
+			tabIndex={0}
 			onClick={handleToggle}
-			disabled={!mounted}
-			variant='ghost'
-			className='text-foreground w-full justify-start gap-3'
-			startIcon={<Moon className='size-5' />}
+			onKeyDown={e => e.key === 'Enter' && handleToggle()}
+			className={cn(
+				'text-foreground flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2 transition-colors',
+				'hover:bg-accent hover:text-accent-foreground', // Эффект ghost кнопки
+				!mounted && 'cursor-not-allowed opacity-50'
+			)}
 		>
-			<span className='flex-1 text-left'>Тёмная тема</span>
+			<Moon className='size-5 shrink-0' />
+
+			<span className='flex-1 text-left text-sm font-medium'>Тёмная тема</span>
 
 			<Switch
 				checked={isDark}
 				onChange={handleToggle}
-				disabled={!mounted}
-				className='group bg-muted data-checked:bg-primary relative flex h-7 w-12 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none'
+				onClick={e => e.stopPropagation()}
+				className={cn(
+					'group relative flex h-7 w-12 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none',
+					isDark ? 'bg-primary' : 'bg-muted'
+				)}
 			>
 				<span
 					aria-hidden='true'
-					className='bg-foreground group-data-checked:bg-primary-foreground inline-block h-5 w-5 translate-x-0 rounded-full shadow-sm transition-transform duration-200 ease-in-out group-data-checked:translate-x-5'
+					className={cn(
+						'bg-background inline-block h-5 w-5 rounded-full shadow-sm transition-transform duration-200 ease-in-out',
+						isDark ? 'translate-x-5' : 'translate-x-0'
+					)}
 				/>
 			</Switch>
-		</Button>
+		</div>
 	)
 }

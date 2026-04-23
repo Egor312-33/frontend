@@ -15,10 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 		const id = useId()
 		return (
 			<div className='flex w-full flex-col gap-1.5'>
-				<label
-					htmlFor={id}
-					className='text-foreground text-left text-sm font-semibold'
-				>
+				<label htmlFor={id} className='text-foreground text-left text-sm font-semibold'>
 					{label}
 				</label>
 
@@ -36,9 +33,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 						className={cn(
 							'bg-input border-border text-foreground placeholder:text-muted-foreground focus:border-primary h-11 w-full rounded-xl border-2 px-4 text-sm transition-all duration-200 outline-none disabled:cursor-not-allowed disabled:opacity-50',
 							icon ? 'pl-11' : 'pl-4',
-							error
-								? 'border-destructive focus:border-destructive'
-								: 'focus:border-accent',
+							error ? 'border-destructive focus:border-destructive' : 'focus:border-accent',
 							className
 						)}
 						{...rest}

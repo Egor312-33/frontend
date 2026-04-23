@@ -5,7 +5,8 @@ import {
 	Medal,
 	MessageSquare,
 	Settings,
-	Users
+	Users,
+	Video
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -24,9 +25,9 @@ const routes: Route[] = [
 		icon: KeyRound
 	},
 	{
-		label: 'chatSettings',
-		href: '/dashboard/chat',
-		icon: MessageSquare
+		label: 'content',
+		href: '/dashboard/content',
+		icon: Video
 	},
 	{
 		label: 'followers',
@@ -56,7 +57,10 @@ export function DashboardNav() {
 	return (
 		<div className='space-y-2 px-2 pt-4 lg:pt-0'>
 			{routes.map((route, index) => (
-				<SidebarItem key={index} route={route} />
+				<SidebarItem
+					key={index}
+					route={{ ...route, label: t(route.label) }}
+				/>
 			))}
 		</div>
 	)

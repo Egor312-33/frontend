@@ -9,10 +9,11 @@ const typographyVariants = cva('', {
 		variant: {
 			'title-1': 'text-3xl font-semibold text-title mb-2',
 			'title-2': 'scroll-m-20 text-3xl font-semibold tracking-tight',
-			'title-3': 'scroll-m-20 text-2xl font-semibold tracking-tight',
+			'title-3':
+				'scroll-m-20 text-2xl font-semibold text-title tracking-tight',
 			'title-4': 'scroll-m-20 text-xl font-semibold tracking-tight',
 			'title-5': 'text-lg font-semibold',
-			'sub-title': 'text-sm text-muted-foreground leading-relaxed',
+			'sub-title': 'text-lg text-muted-foreground leading-relaxed',
 			'body-1': 'text-base leading-7',
 			'body-2': 'text-sm font-medium leading-none',
 			'body-3': 'text-sm text-muted-foreground leading-relaxed',

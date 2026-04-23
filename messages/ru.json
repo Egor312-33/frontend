@@ -1,281 +1,292 @@
 {
-    "home": {
-        "title": "Главная страница"
-    },
-    "layout": {
-        "header": {
-            "headerMenu": {
-                "login": "Войти",
-                "register": "Регистрация",
-                "profileMenu": {
-                    "notifications": {
-                        "heading": "Уведомления",
-                        "loading": "Загрузка...",
-                        "empty": "У вас нет уведомлений"
-                    },
-                    "successMessage": "Вы успешно вышли из системы",
-                    "errorMessage": "Ошибка при выходе",
-                    "userProfile": "Мой профиль",
-                    "dashboard": "Панель управления",
-                    "logout": "Выйти"
-                }
-            }
-        },
-        "sidebar": {
-            "header": {
-                "expand": "Развернуть",
-                "collapse": "Свернуть",
-                "navigation": "Навигация"
-            },
-            "headersNav": {
-                "management": "Управление"
-            },
-            "dashboardNav": {
-                "settings": "Настройки",
-                "streamSettings": "Настройки стрима",
-                "content": "Контент",
-                "chatSettings": "Подписки",
-                "followers": "Подписчики",
-                "home": "Главная",
-                "heroName": "Stray228",
-                "culture": "Культура",
-                "lightbulb": "Идеи"
-            },
-            "userNav": {
-                "home": "Главная",
-                "categories": "Категории",
-                "streams": "Трансляции",
-                "recommended": "Рекомендации"
-            },
-            "recommended": {
-                "heading": "Рекомендации"
-            }
-        }
-    },
-    "dashboard": {
-        "settings": {
-            "heading": {
-                "header": "Настройки",
-                "placeholder": "Управление вашим профилем и настройками аккаунта"
-            },
-            "profile": {
-                "header": {
-                    "heading": "Профиль",
-                    "description": "Настройте ваш профиль, обновите аватар, измените информацию о себе и добавьте ссылки на социальные сети, чтобы сделать вашу страницу более привлекательной для других пользователей."
-                },
-                "avatar": {
-                    "heading": "Изображение профиля",
-                    "updateButton": "Обновить изображение профиля",
-                    "confirmModal": {
-                        "heading": "Удаление аватара",
-                        "message": "Вы уверены, что хотите удалить изображение профиля? Это действие нельзя будет отменить.",
-                        "confirm": "Удалить",
-                        "cancel": "Отменить"
-                    },
-                    "info": "Поддерживаемые форматы: JPG, JPEG, PNG, WEBP или GIF. Макс. размер: 10 МБ.",
-                    "successUpdateMessage": "Успешное обновление аватара",
-                    "errorUpdateMessage": "Ошибка при обновлении аватара",
-                    "successRemoveMessage": "Успешное удаление аватара",
-                    "errorRemoveMessage": "Ошибка при удалении аватара"
-                },
-                "info": {
-                    "heading": "Настройки профиля",
-                    "usernameLabel": "Имя пользователя",
-                    "usernamePlaceholder": "john434",
-                    "usernameDescription": "Под этим именем вас будут знать другие пользователи.",
-                    "displayNameLabel": "Отображаемое имя",
-                    "displayNamePlaceholder": "John Doe",
-                    "displayNameDescription": "Проставьте прописные буквы в имени пользователя по своему желанию.",
-                    "bioLabel": "О себе",
-                    "bioPlaceholder": "Генерал gachi армии",
-                    "bioDescription": "Информация о себе должна содержать не более 300 символов.",
-                    "submitButton": "Сохранить изменения",
-                    "successMessage": "Профиль успешно обновлён",
-                    "errorMessage": "Ошибка при обновлении профиля"
-                },
-                "socialLinks": {
-                    "createForm": {
-                        "heading": "Ссылки на соцсети",
-                        "titleLabel": "Название ссылки",
-                        "titlePlaceholder": "Youtube",
-                        "titleDescription": "Придумайте название для вашей ссылки, например Youtube",
-                        "urlLabel": "URL ссылки",
-                        "urlPlaceholder": "https://stray228freak.ru",
-                        "urlDescription": "Введите полный URL-адрес, например https://stray228freak.ru",
-                        "submitButton": "Добавить",
-                        "successMessage": "Успешное добавленение ссылки",
-                        "errorMessage": "Ошибка добавленения ссылки"
-                    },
-                    "editForm": {
-                        "cancelButton": "Отмена",
-                        "submitButton": "Сохранить",
-                        "confirmButton": "Удалить",
-                        "titleDelete": "Удаление ссылки",
-                        "descriptionDelete": "Вы уверены, что хотите удалить ссылку? Это действие нельзя будет отменить.",
-                        "successUpdateMessage": "Успешное изменение ссылки",
-                        "errorUpdateMessage": "Ошибка изменения ссылки",
-                        "successRemoveMessage": "Успешное удаление ссылки",
-                        "errorRemoveMessage": "Ошибка удаления ссылки"
-                    },
-                    "viewForm": {
-                        "emptyStateText": "У вас пока нет добавленных социальных ссылок",
-                        "emptyStateSubtext": "Добавьте ваши профили в социальных сетях, чтобы посетители могли с вами связаться",
-                        "socialLinksTitle": "Ваши социальные ссылки",
-                        "successReorderMessage": "Успешное изменение порядка",
-                        "errorReorderMessage": "Ошибка изменения порядка"
-                    }
-                }
-            },
-            "sessions": {
-                "header": {
-                    "heading": "Сессии",
-                    "description": "Сессии — это устройства, которые вы используете или которые использовали для входа в вашу учетную запись TeaStream. Здесь показаны активные сессии в данный момент."
-                },
-                "info": {
-                    "current": "Текущая сессия",
-                    "active": "Активные сессии",
-                    "notFound": "Активных сессий не найдено"
-                },
-                "sessionItem": {
-                    "deleteButton": "Удалить",
-                    "detailsButton": "Подробнее",
-                    "confirmModal": {
-                        "heading": "Удаление сессии",
-                        "message": "Вы уверены, что хотите удалить эту сессию? Это действие приведёт к необратимому удалению сессии на этом устройстве и завершит все активные действия, связанные с ним."
-                    },
-                    "successMessage": "Сессия удалена",
-                    "errorMessage": "Ошибка при удалении сессии"
-                },
-                "sessionModal": {
-                    "heading": "Информация о сессии",
-                    "device": "Устройство:",
-                    "location": "Местоположение:",
-                    "ipAddress": "IP-адрес:",
-                    "createdAt": "Дата создания:"
-                }
-            }
-        },
-        "content": {
-            "heading": {
-                "header": "Контент на аккаунте",
-                "placeholder": "Управление вашими публичными и приватными видео"
-            },
-            "videos": {
-                "header": {
-                    "heading": "Видео"
-                },
-                "information": {
-                    "updateButton": "Обновить превью видео",
-                    "confirmModal": {
-                        "heading": "Удаление превью",
-                        "message": "Вы уверены, что хотите удалить превью видео? Это действие нельзя будет отменить",
-                        "confirm": "Удалить",
-                        "cancel": "Отменить"
-                    },
-                    "info": "Поддерживаемые форматы: JPG, JPEG, PNG, WEBP или GIF. Макс. размер: 10 МБ.",
-                    "successUpdateMessage": "Успешное обновление превью",
-                    "errorUpdateMessage": "Ошибка при обновлении превью",
-                    "successRemoveMessage": "Успешное удаление превью",
-                    "errorRemoveMessage": "Ошибка при удалении превью"
-                },
-                "access": {
-                    "header": {
-                        "heading": "Параметры доступа",
-                        "description": "Укажите, кто сможет посмотреть видео"
-                    },
-                    "limitedAccess": {
-                        "header": "Ограниченный доступ",
-                        "description": "Видео доступно только вам и выбранным вами пользователям"
-                    },
-                    "openAccess": {
-                        "header": "Открытый доступ",
-                        "description": "Видео доступно всем пользователям"
-                    }
-                }
-            },
-            "playlists": {
-                "header": {
-                    "heading": "Плейлисты"
-                }
-            },
-            "articles": {
-                "header": {
-                    "heading": "Статьи"
-                }
-            }
-        }
-    },
-    "culture": {
-        "categories": {
-            "video": {
-                "heading": {
-                    "header": "Все категории видео",
-                    "placeholder": "Вы обязательно найдёте что то для себя"
-                }
-            }
-        }
-    },
-    "utils": {
-        "formatDate": {
-            "months": {
-                "january": "января",
-                "february": "февраля",
-                "march": "марта",
-                "april": "апреля",
-                "may": "мая",
-                "june": "июня",
-                "july": "июля",
-                "august": "августа",
-                "september": "сентября",
-                "october": "октября",
-                "november": "ноября",
-                "december": "декабря"
-            }
-        }
-    },
-    "auth": {
-        "login": {
-            "metadata": {
-                "title": "Авторизация",
-                "description": "Авторизация на сайте TrashStreamers через Email, номер телефона и другие интернет ресурсы. Получите  одноразовый код (OTP) для мгновенного доступа к вашему аккаунту"
-            },
-            "wrapper": {
-                "heading": "Авторизация",
-                "description": "Чтобы войти на сайт введите ваш email или телефон",
-                "backButtonLabel": "Еще нет аккаунта? Можете пройти полную регистрацию"
-            },
-            "otp": {
-                "sendotp": {
-                    "successMessage": "Код отправлен!",
-                    "errorMessage": "Ошибка отправки кода"
-                },
-                "verifyotp": {
-                    "successMessage": "Вход выполнен успешно!",
-                    "errorMessage": "Неверный код"
-                },
-                "otpInputLabel": "Код подтверждения",
-                "email": {
-                    "label": "Email",
-                    "changeLabel": "Изменить email"
-                },
-                "phone": {
-                    "label": "Номер телефона",
-                    "changeLabel": "Изменить телефон"
-                },
-                "code": {
-                    "label": "Код подтверждения",
-                    "confirm": "Подтвердить код",
-                    "get": "Получить код"
-                },
-                "validation": {
-                    "required": "Это поле обязательно для заполнения",
-                    "invalidEmail": "Введите корректный email адрес",
-                    "invalidPhone": "Номер должен содержать не менее 10 цифр",
-                    "phoneDigitsOnly": "Номер телефона должен состоять только из цифр",
-                    "codeLength": "Код должен состоять ровно из 6 символов",
-                    "codeDigitsOnly": "Код должен содержать только цифры"
-                }
-            }
-        }
-    }
+	"language": {
+		"en": "Английский",
+		"ru": "Русский"
+	},
+	"home": {
+		"title": "Главная страница"
+	},
+	"layout": {
+		"header": {
+			"headerMenu": {
+				"login": "Войти",
+				"register": "Регистрация",
+				"profileMenu": {
+					"notifications": {
+						"heading": "Уведомления",
+						"loading": "Загрузка...",
+						"empty": "У вас нет уведомлений"
+					},
+					"successMessage": "Вы успешно вышли из системы",
+					"errorMessage": "Ошибка при выходе",
+					"userProfile": "Мой профиль",
+					"dashboard": "Панель управления",
+					"logout": "Выйти"
+				}
+			}
+		},
+		"sidebar": {
+			"header": {
+				"expand": "Развернуть",
+				"collapse": "Свернуть",
+				"navigation": "Навигация"
+			},
+			"headersNav": {
+				"management": "Управление"
+			},
+			"dashboardNav": {
+				"settings": "Настройки",
+				"streamSettings": "Настройки стрима",
+				"content": "Контент",
+				"chatSettings": "Подписки",
+				"followers": "Подписчики",
+				"home": "Главная",
+				"heroName": "Stray228",
+				"culture": "Культура",
+				"lightbulb": "Идеи"
+			},
+			"userNav": {
+				"home": "Главная",
+				"categories": "Категории",
+				"streams": "Трансляции",
+				"recommended": "Рекомендации"
+			},
+			"recommended": {
+				"heading": "Рекомендации"
+			}
+		}
+	},
+	"dashboard": {
+		"settings": {
+			"heading": {
+				"header": "Настройки",
+				"placeholder": "Управление вашим профилем и настройками аккаунта"
+			},
+			"profile": {
+				"header": {
+					"heading": "Профиль",
+					"description": "Настройте ваш профиль, обновите аватар, измените информацию о себе и добавьте ссылки на социальные сети, чтобы сделать вашу страницу более привлекательной для других пользователей."
+				},
+				"avatar": {
+					"heading": "Изображение профиля",
+					"updateButton": "Обновить изображение профиля",
+					"confirmModal": {
+						"heading": "Удаление аватара",
+						"message": "Вы уверены, что хотите удалить изображение профиля? Это действие нельзя будет отменить.",
+						"confirm": "Удалить",
+						"cancel": "Отменить"
+					},
+					"info": "Поддерживаемые форматы: JPG, JPEG, PNG, WEBP или GIF. Макс. размер: 10 МБ.",
+					"successUpdateMessage": "Успешное обновление аватара",
+					"errorUpdateMessage": "Ошибка при обновлении аватара",
+					"successRemoveMessage": "Успешное удаление аватара",
+					"errorRemoveMessage": "Ошибка при удалении аватара"
+				},
+				"info": {
+					"heading": "Настройки профиля",
+					"usernameLabel": "Имя пользователя",
+					"usernamePlaceholder": "john434",
+					"usernameDescription": "Под этим именем вас будут знать другие пользователи.",
+					"displayNameLabel": "Отображаемое имя",
+					"displayNamePlaceholder": "John Doe",
+					"displayNameDescription": "Проставьте прописные буквы в имени пользователя по своему желанию.",
+					"bioLabel": "О себе",
+					"bioPlaceholder": "Генерал gachi армии",
+					"bioDescription": "Информация о себе должна содержать не более 300 символов.",
+					"submitButton": "Сохранить изменения",
+					"successMessage": "Профиль успешно обновлён",
+					"errorMessage": "Ошибка при обновлении профиля"
+				},
+				"socialLinks": {
+					"createForm": {
+						"heading": "Ссылки на соцсети",
+						"titleLabel": "Название ссылки",
+						"titlePlaceholder": "Youtube",
+						"titleDescription": "Придумайте название для вашей ссылки, например Youtube",
+						"urlLabel": "URL ссылки",
+						"urlPlaceholder": "https://stray228freak.ru",
+						"urlDescription": "Введите полный URL-адрес, например https://stray228freak.ru",
+						"submitButton": "Добавить",
+						"successMessage": "Успешное добавленение ссылки",
+						"errorMessage": "Ошибка добавленения ссылки"
+					},
+					"editForm": {
+						"cancelButton": "Отмена",
+						"submitButton": "Сохранить",
+						"confirmButton": "Удалить",
+						"titleDelete": "Удаление ссылки",
+						"descriptionDelete": "Вы уверены, что хотите удалить ссылку? Это действие нельзя будет отменить.",
+						"successUpdateMessage": "Успешное изменение ссылки",
+						"errorUpdateMessage": "Ошибка изменения ссылки",
+						"successRemoveMessage": "Успешное удаление ссылки",
+						"errorRemoveMessage": "Ошибка удаления ссылки"
+					},
+					"viewForm": {
+						"emptyStateText": "У вас пока нет добавленных социальных ссылок",
+						"emptyStateSubtext": "Добавьте ваши профили в социальных сетях, чтобы посетители могли с вами связаться",
+						"socialLinksTitle": "Ваши социальные ссылки",
+						"successReorderMessage": "Успешное изменение порядка",
+						"errorReorderMessage": "Ошибка изменения порядка"
+					}
+				}
+			},
+			"sessions": {
+				"header": {
+					"heading": "Сессии",
+					"description": "Сессии — это устройства, которые вы используете или которые использовали для входа в вашу учетную запись TeaStream. Здесь показаны активные сессии в данный момент."
+				},
+				"info": {
+					"current": "Текущая сессия",
+					"active": "Активные сессии",
+					"notFound": "Активных сессий не найдено"
+				},
+				"sessionItem": {
+					"deleteButton": "Удалить",
+					"detailsButton": "Подробнее",
+					"confirmModal": {
+						"heading": "Удаление сессии",
+						"message": "Вы уверены, что хотите удалить эту сессию? Это действие приведёт к необратимому удалению сессии на этом устройстве и завершит все активные действия, связанные с ним."
+					},
+					"successMessage": "Сессия удалена",
+					"errorMessage": "Ошибка при удалении сессии"
+				},
+				"sessionModal": {
+					"heading": "Информация о сессии",
+					"device": "Устройство:",
+					"location": "Местоположение:",
+					"ipAddress": "IP-адрес:",
+					"createdAt": "Дата создания:"
+				}
+			}
+		},
+		"content": {
+			"heading": {
+				"header": "Контент на аккаунте",
+				"placeholder": "Управляйте своими видео, плейлистами и статьями"
+			},
+			"tabs": {
+				"videos": "Видео",
+				"playlists": "Плейлисты",
+				"articles": "Статьи"
+			},
+			"videos": {
+				"tabs": {
+					"video": "Видео",
+					"access": "Доступ",
+					"views": "Просмотры",
+					"percentage": "% Понравившихся"
+				},
+				"information": {
+					"updateButton": "Обновить превью видео",
+					"confirmModal": {
+						"heading": "Удаление превью",
+						"message": "Вы уверены, что хотите удалить превью видео? Это действие нельзя будет отменить",
+						"confirm": "Удалить",
+						"cancel": "Отменить"
+					},
+					"info": "Поддерживаемые форматы: JPG, JPEG, PNG, WEBP или GIF. Макс. размер: 10 МБ.",
+					"successUpdateMessage": "Успешное обновление превью",
+					"errorUpdateMessage": "Ошибка при обновлении превью",
+					"successRemoveMessage": "Успешное удаление превью",
+					"errorRemoveMessage": "Ошибка при удалении превью"
+				},
+				"access": {
+					"header": {
+						"heading": "Параметры доступа",
+						"description": "Укажите, кто сможет посмотреть видео"
+					},
+					"limitedAccess": {
+						"header": "Ограниченный доступ",
+						"description": "Видео доступно только вам и выбранным вами пользователям"
+					},
+					"openAccess": {
+						"header": "Открытый доступ",
+						"description": "Видео доступно всем пользователям"
+					}
+				}
+			},
+			"playlists": {
+				"header": {
+					"heading": "Плейлисты"
+				}
+			},
+			"articles": {
+				"header": {
+					"heading": "Статьи"
+				}
+			}
+		}
+	},
+	"category": {
+		"video": {
+			"heading": {
+				"header": "Категории видео",
+				"placeholder": "Управляйте категориями для классификации видео",
+				"adminButton": "Добавить категорию"
+			}
+		}
+	},
+	"utils": {
+		"formatDate": {
+			"months": {
+				"january": "января",
+				"february": "февраля",
+				"march": "марта",
+				"april": "апреля",
+				"may": "мая",
+				"june": "июня",
+				"july": "июля",
+				"august": "августа",
+				"september": "сентября",
+				"october": "октября",
+				"november": "ноября",
+				"december": "декабря"
+			}
+		}
+	},
+	"auth": {
+		"login": {
+			"metadata": {
+				"title": "Авторизация",
+				"description": "Авторизация на сайте TrashStreamers через Email, номер телефона и другие интернет ресурсы. Получите  одноразовый код (OTP) для мгновенного доступа к вашему аккаунту"
+			},
+			"wrapper": {
+				"heading": "Авторизация",
+				"description": "Чтобы войти на сайт введите ваш email или телефон",
+				"backButtonLabel": "Еще нет аккаунта? Можете пройти полную регистрацию"
+			},
+			"otp": {
+				"sendotp": {
+					"successMessage": "Код отправлен!",
+					"errorMessage": "Ошибка отправки кода"
+				},
+				"verifyotp": {
+					"successMessage": "Вход выполнен успешно!",
+					"errorMessage": "Неверный код"
+				},
+				"otpInputLabel": "Код подтверждения",
+				"email": {
+					"label": "Email",
+					"changeLabel": "Изменить email"
+				},
+				"phone": {
+					"label": "Номер телефона",
+					"changeLabel": "Изменить телефон"
+				},
+				"code": {
+					"label": "Код подтверждения",
+					"confirm": "Подтвердить код",
+					"get": "Получить код"
+				},
+				"validation": {
+					"required": "Это поле обязательно для заполнения",
+					"invalidEmail": "Введите корректный email адрес",
+					"invalidPhone": "Номер должен содержать не менее 10 цифр",
+					"phoneDigitsOnly": "Номер телефона должен состоять только из цифр",
+					"codeLength": "Код должен состоять ровно из 6 символов",
+					"codeDigitsOnly": "Код должен содержать только цифры"
+				}
+			}
+		}
+	}
 }

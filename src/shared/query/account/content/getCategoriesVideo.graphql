@@ -1,0 +1,15 @@
+query GetCategoriesVideo($targets: [TargetType!]) {
+	getCategories(targets: $targets) {
+		createdAt
+		id
+		slug
+		targets
+		thumbnailUrl
+		translations {
+			title
+			language
+			id
+			description
+		}
+	}
+}

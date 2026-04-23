@@ -1,0 +1,13 @@
+query GetCategories {
+	getCategories {
+		id
+		slug
+		targets
+		thumbnailUrl
+		translations {
+			title
+			language
+			id
+		}
+	}
+}

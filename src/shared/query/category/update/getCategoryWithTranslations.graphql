@@ -1,0 +1,14 @@
+query GetCategoryWithTranslations($slug: String!) {
+	getCategoryWithTranslations(slug: $slug) {
+		id
+		slug
+		targets
+		thumbnailUrl
+		translations {
+			description
+			id
+			language
+			title
+		}
+	}
+}

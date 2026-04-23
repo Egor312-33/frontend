@@ -1,0 +1,5 @@
+mutation ConfirmVideoUpload($input: ConfirmVideoUploadInput!) {
+	confirmVideoUpload(input: $input) {
+		success
+	}
+}

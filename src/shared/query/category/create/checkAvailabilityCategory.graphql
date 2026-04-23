@@ -1,0 +1,5 @@
+query CheckAvailabilityCategory($slug: String!) {
+	checkAvailabilityCategory(slug: $slug) {
+		isAvailable
+	}
+}

@@ -1,14 +1,18 @@
 query GetAccount {
-  GetAccount {
-    userId
-    user {
-      avatar
-      displayName
-      userName
-    }
-    phone
-    email
-    createdAt
-    updatedAt
-  }
+	GetAccount {
+		userId
+		user {
+			id
+			avatar
+			displayName
+			userName
+			updatedAt
+			createdAt
+		}
+		role
+		phone
+		email
+		createdAt
+		updatedAt
+	}
 }
