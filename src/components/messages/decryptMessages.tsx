@@ -8,9 +8,8 @@ function hexToBuffer(hex: string): Uint8Array {
 	return bytes
 }
 
-// 1. Расшифровываем ключ чата: RSA-OAEP приватным ключом
 export async function decryptChatKey(
-	encryptedChatKey: string, // base64 от сервера
+	encryptedChatKey: string, 
 	privateKey: CryptoKey
 ): Promise<CryptoKey> {
 	const encryptedBuffer = Uint8Array.from(atob(encryptedChatKey), c => c.charCodeAt(0))
@@ -21,7 +20,6 @@ export async function decryptChatKey(
 		encryptedBuffer
 	)
 
-	// Импортируем как AES-GCM ключ
 	return crypto.subtle.importKey(
 		'raw',
 		rawKey,
@@ -31,18 +29,16 @@ export async function decryptChatKey(
 	)
 }
 
-// 2. Расшифровываем одно сообщение: AES-256-GCM
 export async function decryptMessage(
-	content:   string, // hex
-	iv:        string, // hex
-	authTag:   string, // hex
+	content:   string, 
+	iv:        string,
+	authTag:   string, 
 	aesKey:    CryptoKey
 ): Promise<string> {
 	const ivBuffer      = hexToBuffer(iv)
 	const contentBuffer = hexToBuffer(content)
 	const tagBuffer     = hexToBuffer(authTag)
 
-	// Web Crypto ожидает: ciphertext + authTag слиты вместе
 	const combined = new Uint8Array(contentBuffer.length + tagBuffer.length)
 	combined.set(contentBuffer)
 	combined.set(tagBuffer, contentBuffer.length)
@@ -63,7 +59,6 @@ export interface DecryptedMessage {
 	senderId:  string
 }
 
-// 3. Расшифровываем все сообщения из ответа
 export async function decryptAllMessages(
 	messages:         Array<{
 		id: string

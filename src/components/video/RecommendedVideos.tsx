@@ -3,7 +3,7 @@
 import { Clock, Eye } from 'lucide-react'
 import Image from 'next/image'
 
-// --- Заглушки (заменить на реальный запрос) ---
+
 const STUB_VIDEOS = [
 	{
 		id: '1',
@@ -66,7 +66,7 @@ export function RecommendedVideos() {
 						href={`/videos/${video.slug}`}
 						className='hover:bg-secondary/50 group flex cursor-pointer gap-3 rounded-xl p-2 transition-colors duration-150'
 					>
-						{/* Превью */}
+
 						<div className='bg-secondary relative h-23.5 w-42 shrink-0 overflow-hidden rounded-lg'>
 							{video.thumbnailUrl ? (
 								<Image
@@ -83,7 +83,7 @@ export function RecommendedVideos() {
 									</div>
 								</div>
 							)}
-							{/* Длительность */}
+
 							<div className='absolute right-1.5 bottom-1.5 flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5'>
 								<Clock size={10} className='text-white' />
 								<span className='font-mono text-[10px] leading-none font-medium text-white'>
@@ -92,7 +92,6 @@ export function RecommendedVideos() {
 							</div>
 						</div>
 
-						{/* Инфо */}
 						<div className='flex min-w-0 flex-1 flex-col gap-1'>
 							<p className='text-foreground group-hover:text-primary m-0 line-clamp-2 text-[13px] leading-snug font-semibold transition-colors duration-150'>
 								{video.title}

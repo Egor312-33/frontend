@@ -136,12 +136,12 @@ function RotatingCube({ slides }: { slides: string[] }) {
 
 function getCubeFaceTransform(index: number): string {
 	const transforms = [
-		'rotateY(0deg) translateZ(var(--cube-size))', // front
-		'rotateY(180deg) translateZ(var(--cube-size))', // back
-		'rotateY(90deg) translateZ(var(--cube-size))', // right
-		'rotateY(-90deg) translateZ(var(--cube-size))', // left
-		'rotateX(90deg) translateZ(var(--cube-size))', // top
-		'rotateX(-90deg) translateZ(var(--cube-size))' // bottom
+		'rotateY(0deg) translateZ(var(--cube-size))',
+		'rotateY(180deg) translateZ(var(--cube-size))', 
+		'rotateY(90deg) translateZ(var(--cube-size))', 
+		'rotateY(-90deg) translateZ(var(--cube-size))', 
+		'rotateX(90deg) translateZ(var(--cube-size))', 
+		'rotateX(-90deg) translateZ(var(--cube-size))' 
 	]
 
 	return transforms[index] || transforms[0]

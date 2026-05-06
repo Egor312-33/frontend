@@ -6,6 +6,7 @@ import { VideoWatch } from '@/components/video/VIdeoWatch'
 
 import { SERVER_URL } from '@/libs/constants/url.constants'
 import { GetPublicVideoBySlugDocument, type GetPublicVideoBySlugQuery } from '@/shared/gql/graphql'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
 	searchParams: Promise<{ [key: string]: string }>
@@ -60,15 +61,16 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function VideoWatchPage({ searchParams }: Props) {
 	const { v } = await searchParams
-
+	const t = await getTranslations('video');
+	
 	if (!v) {
 		return notFound()
 	}
 
-	const { video } = await getVideo(v)
+	const { video } = await getVideo(v);
 
 	if (!video) {
-		return <div>Видео не найдено или удалено.</div>
+		return <div>{t('notFound')}</div>
 	}
 
 	return <VideoWatch video={video} />

@@ -24,7 +24,6 @@ export default function AccountPage() {
 				</Typography>
 			</div>
 
-			{/* Контент */}
 			<div className='space-y-4'>
 				<PlaceholderCard title='ChangeEmailForm' />
 				<PlaceholderCard title='ChangePasswordForm' />

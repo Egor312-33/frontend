@@ -7,7 +7,7 @@ import type { GetPublicVideoBySlugQuery } from '@/shared/gql/graphql'
 import { formatDate } from '@/utils/format-date'
 import { formatDuration } from '@/utils/format-duration'
 
-// --- Заглушка автора (в запросе нет user) ---
+
 const STUB_AUTHOR = {
 	displayName: 'Автор канала',
 	avatar: null as string | null,
@@ -21,12 +21,9 @@ interface VideoInfoProps {
 export function VideoInfo({ video }: VideoInfoProps) {
 	return (
 		<div className='flex flex-col gap-3'>
-			{/* Заголовок */}
 			<h1 className='text-foreground m-0 text-xl leading-snug font-semibold'>{video.title}</h1>
 
-			{/* Автор + действия */}
 			<div className='border-border flex flex-wrap items-center justify-between gap-3 border-y py-3'>
-				{/* Автор */}
 				<div className='flex items-center gap-3'>
 					<div className='bg-secondary ring-primary/30 relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-2'>
 						{STUB_AUTHOR.avatar ? (
@@ -51,14 +48,12 @@ export function VideoInfo({ video }: VideoInfoProps) {
 						<span className='text-muted-foreground text-xs'>{STUB_AUTHOR.subscribers} подписчиков</span>
 					</div>
 
-					{/* Подписка */}
 					<button className='bg-primary text-primary-foreground ml-2 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 hover:shadow-[0_4px_20px_rgba(200,255,0,0.4)] hover:brightness-110'>
 						<Bell size={14} />
 						Подписаться
 					</button>
 				</div>
 
-				{/* Кнопки реакций */}
 				<div className='flex flex-wrap items-center gap-2'>
 					<div className='border-border bg-secondary flex items-center overflow-hidden rounded-full border'>
 						<button className='text-secondary-foreground hover:bg-secondary-hover flex items-center gap-1.5 px-4 py-2 text-sm transition-colors duration-150'>
@@ -82,7 +77,6 @@ export function VideoInfo({ video }: VideoInfoProps) {
 				</div>
 			</div>
 
-			{/* Описание */}
 			<div className='bg-secondary/50 border-border rounded-xl border p-4'>
 				<div className='text-muted-foreground mb-3 flex flex-wrap items-center gap-3 text-sm font-medium'>
 					<span className='flex items-center gap-1.5'>
