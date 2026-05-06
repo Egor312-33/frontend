@@ -1,11 +1,11 @@
-// Расшифровка сообщений системного чата
+
 
 function hexToBuffer(hex: string): Uint8Array {
 	const bytes = new Uint8Array(hex.length / 2)
 	for (let i = 0; i < hex.length; i += 2) {
 		bytes[i / 2] = parseInt(hex.slice(i, i + 2), 16)
 	}
-	return bytes
+	return new Uint8Array(bytes.buffer.slice(0))
 }
 
 export async function decryptChatKey(
