@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../lib/utils';
 import { Pencil, Trash, X } from "lucide-react";
+import Link from 'next/link';
+import { cn } from '../lib/utils';
 
 const buttonIconVariants = cva(
     'inline-flex items-center justify-center rounded-xl cursor-pointer transition-all duration-200 disabled:opacity-50 [&_svg]:w-4 [&_svg]:h-4',
@@ -36,6 +37,7 @@ interface ButtonIconProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonIconVariants> {
     loading?: boolean;
+    href?: string;
 }
 
 export function ButtonIcon({
@@ -45,6 +47,7 @@ export function ButtonIcon({
     loading = false,
     disabled,
     children,
+    href,
     ...props
 }: ButtonIconProps) {
     let icon: React.ReactNode = null;
@@ -64,25 +67,34 @@ export function ButtonIcon({
     const isLoading = loading && !disabled;
     const isDisabled = disabled && !loading;
 
+    const classes = cn(
+        buttonIconVariants({ variant, size, className }),
+        isLoading && 'cursor-wait',
+        isDisabled && 'cursor-not-allowed',
+        !isLoading && !isDisabled && 'cursor-pointer'
+    );
+    const content = loading
+        ? <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+        : (icon || children);
+
+    if (href && !disabled && !loading) {
+        return (
+            <Link href={href} className={classes}>
+                {content}
+            </Link>
+        );
+    }
+
     return (
         <button
             type="button"
-            className={cn(
-                buttonIconVariants({ variant, size, className }),
-                isLoading && 'cursor-wait',
-                isDisabled && 'cursor-not-allowed',
-                !isLoading && !isDisabled && 'cursor-pointer'
-            )}
+            className={classes}
             disabled={disabled || loading}
             {...props}
         >
-            {loading ? (
-                <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-            ) : (
-                icon || children
-            )}
+            {content}
         </button>
-    );
+);
 }
 
 
