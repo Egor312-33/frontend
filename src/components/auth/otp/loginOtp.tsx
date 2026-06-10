@@ -16,18 +16,12 @@ import Typography from '../../ui/typography'
 
 import { AUTH_TYPE_CONFIG, type SupportedAuthType } from './auth-type.config'
 import { type TypeLoginSchema, loginSchema } from '@/schemes/auth/login.schema'
-import {
-	AuthType,
-	SendOtpDocument,
-	VerifyOtpDocument
-} from '@/shared/gql/graphql'
+import { AuthType, SendOtpDocument, VerifyOtpDocument } from '@/shared/gql/graphql'
 
 export function LoginOtpForm() {
 	const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
 	const [isShowTwoFactor, setIsShowFactor] = useState(false)
-	const [inputType, setInputType] = useState<SupportedAuthType>(
-		AuthType.Email
-	)
+	const [inputType, setInputType] = useState<SupportedAuthType>(AuthType.Email)
 	const router = useRouter()
 
 	const t = useTranslations('auth.login.otp')
@@ -49,10 +43,7 @@ export function LoginOtpForm() {
 		setError
 	} = form
 
-	const currentConfig = useMemo(
-		() => AUTH_TYPE_CONFIG[inputType],
-		[inputType]
-	)
+	const currentConfig = useMemo(() => AUTH_TYPE_CONFIG[inputType], [inputType])
 
 	const [sendOtp, { loading: sendingOtp }] = useMutation(SendOtpDocument, {
 		onCompleted: data => {
@@ -66,20 +57,17 @@ export function LoginOtpForm() {
 		}
 	})
 
-	const [verifyOtp, { loading: verifyingOtp }] = useMutation(
-		VerifyOtpDocument,
-		{
-			onCompleted: data => {
-				if (data.verifyOtp?.accessToken) {
-					toast.success(t('verifyotp.successMessage'))
-					router.replace('/')
-				}
-			},
-			onError() {
-				toast.error(t('verifyotp.errorMessage'))
+	const [verifyOtp, { loading: verifyingOtp }] = useMutation(VerifyOtpDocument, {
+		onCompleted: data => {
+			if (data.verifyOtp?.accessToken) {
+				toast.success(t('verifyotp.successMessage'))
+				router.replace('/')
 			}
+		},
+		onError() {
+			toast.error(t('verifyotp.errorMessage'))
 		}
-	)
+	})
 
 	const onSubmitOtp = async (values: TypeLoginSchema) => {
 		const fieldName = currentConfig.fieldName
@@ -122,10 +110,7 @@ export function LoginOtpForm() {
 	const loading = sendingOtp || verifyingOtp
 
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmitOtp)}
-			className='flex flex-col gap-4'
-		>
+		<form onSubmit={handleSubmit(onSubmitOtp)} className='flex flex-col gap-4'>
 			{isShowTwoFactor ? (
 				<div className='flex flex-col items-center gap-4'>
 					<Controller
@@ -136,11 +121,7 @@ export function LoginOtpForm() {
 								label={t('code.label')}
 								value={field.value || ''}
 								onChange={field.onChange}
-								error={
-									errors.code?.message
-										? t(errors.code.message as string)
-										: undefined
-								}
+								error={errors.code?.message ? t(errors.code.message as string) : undefined}
 								disabled={loading}
 								length={6}
 							/>
@@ -188,10 +169,7 @@ export function LoginOtpForm() {
 						icon={currentConfig.icon}
 						error={
 							errors[currentConfig.fieldName]
-								? t(
-										errors[currentConfig.fieldName]
-											?.message as string
-									)
+								? t(errors[currentConfig.fieldName]?.message as string)
 								: undefined
 						}
 						disabled={loading}
@@ -200,12 +178,7 @@ export function LoginOtpForm() {
 				</>
 			)}
 
-			<Button
-				type='submit'
-				className='mt-2 w-full'
-				loading={loading}
-				disabled={loading}
-			>
+			<Button type='submit' className='mt-2 w-full' loading={loading} disabled={loading}>
 				{isShowTwoFactor ? t('code.confirm') : t('code.get')}
 			</Button>
 		</form>

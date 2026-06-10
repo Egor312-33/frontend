@@ -7,7 +7,6 @@ import type { GetPublicVideoBySlugQuery } from '@/shared/gql/graphql'
 import { formatDate } from '@/utils/format-date'
 import { formatDuration } from '@/utils/format-duration'
 
-
 const STUB_AUTHOR = {
 	displayName: 'Автор канала',
 	avatar: null as string | null,

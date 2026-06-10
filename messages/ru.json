@@ -241,7 +241,9 @@
 				"october": "октября",
 				"november": "ноября",
 				"december": "декабря"
-			}
+			},
+			"dateOnly": "{val, date, ::d MMMM yyyy}",
+			"dateTime": "{val, date, ::d MMMM yyyy HH:mm}"
 		}
 	},
 	"auth": {
@@ -288,7 +290,7 @@
 				}
 			}
 		}
-	}, 
+	},
 	"video": {
 		"notFound": "Видео не найдено или удалено."
 	}

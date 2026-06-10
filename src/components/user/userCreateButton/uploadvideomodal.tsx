@@ -11,10 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Modal, type ModalProps } from '@/components/ui/modal/modal'
 import Typography from '@/components/ui/typography'
 
-import {
-	ConfirmVideoUploadDocument,
-	GetVideoUploadTicketDocument
-} from '@/shared/gql/graphql'
+import { ConfirmVideoUploadDocument, GetVideoUploadTicketDocument } from '@/shared/gql/graphql'
 
 enum UploadStatus {
 	Idle = 'idle',
@@ -25,22 +22,14 @@ enum UploadStatus {
 	Error = 'error'
 }
 
-const LOADING_STATUSES = new Set([
-	UploadStatus.FetchingTicket,
-	UploadStatus.Uploading,
-	UploadStatus.Confirming
-])
+const LOADING_STATUSES = new Set([UploadStatus.FetchingTicket, UploadStatus.Uploading, UploadStatus.Confirming])
 
 interface UploadVideoModalProps extends Pick<ModalProps, 'isOpen'> {
 	onClose: () => void
 	onUploadComplete?: (fileKey: string) => void
 }
 
-export const UploadVideoModal = ({
-	isOpen,
-	onClose,
-	onUploadComplete
-}: UploadVideoModalProps) => {
+export const UploadVideoModal = ({ isOpen, onClose, onUploadComplete }: UploadVideoModalProps) => {
 	const [file, setFile] = useState<File | null>(null)
 	const [progress, setProgress] = useState(0)
 	const [status, setStatus] = useState<UploadStatus>(UploadStatus.Idle)
@@ -70,8 +59,7 @@ export const UploadVideoModal = ({
 			xhr.open('PUT', uploadUrl)
 			xhr.setRequestHeader('Content-Type', file.type)
 			xhr.upload.onprogress = e => {
-				if (e.lengthComputable)
-					setProgress(Math.round((e.loaded / e.total) * 100))
+				if (e.lengthComputable) setProgress(Math.round((e.loaded / e.total) * 100))
 			}
 			xhr.onload = () => (xhr.status === 200 ? resolve() : reject())
 			xhr.onerror = reject
@@ -90,8 +78,7 @@ export const UploadVideoModal = ({
 
 			if (!ticketData?.getVideoUploadTicket) throw new Error('No ticket')
 
-			const { uploadUrl, fileKey, videoId } =
-				ticketData.getVideoUploadTicket
+			const { uploadUrl, fileKey, videoId } = ticketData.getVideoUploadTicket
 
 			setStatus(UploadStatus.Uploading)
 			await uploadToS3(uploadUrl, file)
@@ -125,12 +112,7 @@ export const UploadVideoModal = ({
 			[UploadStatus.FetchingTicket]: 'Подготовка...',
 			[UploadStatus.Uploading]: `Загрузка ${progress}%`,
 			[UploadStatus.Confirming]: 'Завершение...'
-		}[
-			status as
-				| UploadStatus.FetchingTicket
-				| UploadStatus.Uploading
-				| UploadStatus.Confirming
-		] ?? 'Загрузить'
+		}[status as UploadStatus.FetchingTicket | UploadStatus.Uploading | UploadStatus.Confirming] ?? 'Загрузить'
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop,
@@ -149,11 +131,7 @@ export const UploadVideoModal = ({
 			closeOnBackdrop={!isLoading}
 			footer={
 				<>
-					<Button
-						onClick={handleClose}
-						disabled={isLoading}
-						variant='secondary'
-					>
+					<Button onClick={handleClose} disabled={isLoading} variant='secondary'>
 						Отмена
 					</Button>
 					{!isDone ? (
@@ -193,15 +171,10 @@ export const UploadVideoModal = ({
 						<>
 							<FileVideo className='text-accent h-10 w-10' />
 							<div className='text-center'>
-								<Typography
-									variant='body-2'
-									className='text-foreground'
-								>
+								<Typography variant='body-2' className='text-foreground'>
 									{file.name}
 								</Typography>
-								<Typography variant='body-3'>
-									{(file.size / 1024 / 1024).toFixed(1)} МБ
-								</Typography>
+								<Typography variant='body-3'>{(file.size / 1024 / 1024).toFixed(1)} МБ</Typography>
 							</div>
 							{!isLoading && !isDone && (
 								<button
@@ -221,17 +194,10 @@ export const UploadVideoModal = ({
 						<>
 							<CloudUpload className='text-muted-foreground h-10 w-10' />
 							<div className='text-center'>
-								<Typography
-									variant='body-2'
-									className='text-foreground'
-								>
-									{isDragActive
-										? 'Отпустите файл здесь'
-										: 'Перетащите видео или нажмите для выбора'}
+								<Typography variant='body-2' className='text-foreground'>
+									{isDragActive ? 'Отпустите файл здесь' : 'Перетащите видео или нажмите для выбора'}
 								</Typography>
-								<Typography variant='body-3'>
-									MP4, MOV, AVI, MKV — до 10 ГБ
-								</Typography>
+								<Typography variant='body-3'>MP4, MOV, AVI, MKV — до 10 ГБ</Typography>
 							</div>
 						</>
 					)}
@@ -240,12 +206,8 @@ export const UploadVideoModal = ({
 				{status === UploadStatus.Uploading && (
 					<div className='space-y-1.5'>
 						<div className='flex justify-between'>
-							<Typography variant='body-3'>
-								Загрузка...
-							</Typography>
-							<Typography variant='body-3'>
-								{progress}%
-							</Typography>
+							<Typography variant='body-3'>Загрузка...</Typography>
+							<Typography variant='body-3'>{progress}%</Typography>
 						</div>
 						<div className='bg-secondary h-1.5 w-full overflow-hidden rounded-full'>
 							<div
@@ -259,9 +221,7 @@ export const UploadVideoModal = ({
 				{status === UploadStatus.Confirming && (
 					<div className='border-border bg-secondary/20 flex items-center gap-2 rounded-xl border px-4 py-3'>
 						<span className='border-primary h-4 w-4 animate-spin rounded-full border-2 border-t-transparent' />
-						<Typography variant='body-3'>
-							Подтверждение загрузки...
-						</Typography>
+						<Typography variant='body-3'>Подтверждение загрузки...</Typography>
 					</div>
 				)}
 
@@ -277,10 +237,7 @@ export const UploadVideoModal = ({
 				{status === UploadStatus.Error && (
 					<div className='border-destructive/30 bg-destructive/10 flex items-center gap-2 rounded-xl border px-4 py-3'>
 						<X className='text-destructive h-4 w-4 shrink-0' />
-						<Typography
-							variant='body-3'
-							className='text-destructive'
-						>
+						<Typography variant='body-3' className='text-destructive'>
 							Ошибка загрузки. Попробуйте ещё раз.
 						</Typography>
 					</div>

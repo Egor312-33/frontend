@@ -1,9 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-export function formatDate(
-	dateString: string | Date,
-	includeTime: boolean = false
-) {
+export function formatDate(dateString: string | Date, includeTime: boolean = false) {
 	const t = useTranslations('utils.formatDate')
 
 	const date = new Date(dateString)

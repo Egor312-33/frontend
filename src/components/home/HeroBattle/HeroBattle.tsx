@@ -1,17 +1,6 @@
 'use server'
 
-import {
-	Ambulance,
-	BottleWine,
-	Coins,
-	Egg,
-	Hand,
-	Rat,
-	Swords,
-	Syringe,
-	Tv,
-	VibrateOff
-} from 'lucide-react'
+import { Ambulance, BottleWine, Coins, Egg, Hand, Rat, Swords, Syringe, Tv, VibrateOff } from 'lucide-react'
 import Image from 'next/image'
 
 import { Button } from '@/components/ui/button'
@@ -52,17 +41,11 @@ export async function HeroBattle() {
 							Олег Бочаров
 						</Typography>
 						<Typography variant='sub-title' tag='p'>
-							Stray228, терпила верхнего интернета, который за
-							деньги готов на всё
+							Stray228, терпила верхнего интернета, который за деньги готов на всё
 						</Typography>
 					</div>
 
-					<Button
-						variant='default'
-						size='lg'
-						className='shadow-xl'
-						href='/stray228'
-					>
+					<Button variant='default' size='lg' className='shadow-xl' href='/stray228'>
 						Открыть статью
 					</Button>
 				</div>
@@ -109,8 +92,7 @@ export async function HeroBattle() {
 							Валентин депутат
 						</Typography>
 						<Typography variant='sub-title' tag='p'>
-							Каноничный представить треш стримеров, хотя и
-							кажется жертвой, это далеко не так
+							Каноничный представить треш стримеров, хотя и кажется жертвой, это далеко не так
 						</Typography>
 					</div>
 

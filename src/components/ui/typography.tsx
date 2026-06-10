@@ -9,8 +9,7 @@ const typographyVariants = cva('', {
 		variant: {
 			'title-1': 'text-3xl font-semibold text-title mb-2',
 			'title-2': 'scroll-m-20 text-3xl font-semibold tracking-tight',
-			'title-3':
-				'scroll-m-20 text-2xl font-semibold text-title tracking-tight',
+			'title-3': 'scroll-m-20 text-2xl font-semibold text-title tracking-tight',
 			'title-4': 'scroll-m-20 text-xl font-semibold tracking-tight',
 			'title-5': 'text-lg font-semibold',
 			'sub-title': 'text-lg text-muted-foreground leading-relaxed',
@@ -28,12 +27,11 @@ const typographyVariants = cva('', {
 	}
 })
 
-export type TypographyProps<T extends TypographyTag> =
-	React.ComponentPropsWithoutRef<T> &
-		VariantProps<typeof typographyVariants> & {
-			tag?: T
-			children: React.ReactNode
-		}
+export type TypographyProps<T extends TypographyTag> = React.ComponentPropsWithoutRef<T> &
+	VariantProps<typeof typographyVariants> & {
+		tag?: T
+		children: React.ReactNode
+	}
 
 export const Typography = <T extends TypographyTag = 'div'>({
 	children,
@@ -46,10 +44,7 @@ export const Typography = <T extends TypographyTag = 'div'>({
 	const Component = tag || 'div'
 
 	return (
-		<Component
-			className={cn(typographyVariants({ variant, hover }), className)}
-			{...props}
-		>
+		<Component className={cn(typographyVariants({ variant, hover }), className)} {...props}>
 			{children}
 		</Component>
 	)

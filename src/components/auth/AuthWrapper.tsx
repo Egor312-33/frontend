@@ -37,18 +37,14 @@ export async function AuthWrapper({
 						</div>
 						<div className='flex flex-col gap-6'>
 							{isShowSocial && (
-								<div className='text-muted-foreground text-sm'>
-									Заглушка для соц. сетей
-								</div>
+								<div className='text-muted-foreground text-sm'>Заглушка для соц. сетей</div>
 							)}
 							{children}
 						</div>
 						<div className='text-center'>
 							{backButtonLabel && backButtonHref && (
 								<Typography variant='sub-title' hover='default'>
-									<Link href={backButtonHref}>
-										{backButtonLabel}
-									</Link>
+									<Link href={backButtonHref}>{backButtonLabel}</Link>
 								</Typography>
 							)}
 						</div>

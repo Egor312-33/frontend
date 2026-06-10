@@ -14,15 +14,8 @@ interface VideoPlayerProps {
 export function VideoPlayer({ thumbnailUrl, src }: VideoPlayerProps) {
 	return (
 		<div className='ring-border relative mx-auto aspect-video w-full max-w-300 rounded-xl ring-1'>
-			<Video
-				src={getMediaSource(src)}
-				controls
-				className='absolute inset-0 h-full w-full rounded-xl'
-			>
-				<div
-					slot='poster'
-					className='bg-background relative h-full w-full'
-				>
+			<Video src={getMediaSource(src)} controls className='absolute inset-0 h-full w-full rounded-xl'>
+				<div slot='poster' className='bg-background relative h-full w-full'>
 					{thumbnailUrl && (
 						<Image
 							src={thumbnailUrl}

@@ -16,11 +16,7 @@ export function SidebarItem({ route }: SidebarItemProps) {
 	if (isCollapsed) {
 		return (
 			<div>
-				<ButtonIcon
-					href={route.href}
-					variant='ghost'
-					aria-label={route.label}
-				>
+				<ButtonIcon href={route.href} variant='ghost' aria-label={route.label}>
 					<route.icon className='h-5 w-5' />
 				</ButtonIcon>
 			</div>
@@ -29,15 +25,8 @@ export function SidebarItem({ route }: SidebarItemProps) {
 
 	return (
 		<div>
-			<Button
-				href={route.href}
-				variant='ghost'
-				startIcon={<route.icon className='h-5 w-5' />}
-				alignLeft
-			>
-				<span className='truncate text-sm font-medium'>
-					{route.label}
-				</span>
+			<Button href={route.href} variant='ghost' startIcon={<route.icon className='h-5 w-5' />} alignLeft>
+				<span className='truncate text-sm font-medium'>{route.label}</span>
 			</Button>
 		</div>
 	)

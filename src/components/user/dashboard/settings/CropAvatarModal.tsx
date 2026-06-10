@@ -14,10 +14,7 @@ interface CropAvatarModalProps {
 }
 
 // Утилита: вырезает пиксели из canvas по croppedAreaPixels
-async function getCroppedImg(
-	imageSrc: string,
-	croppedAreaPixels: Area
-): Promise<File> {
+async function getCroppedImg(imageSrc: string, croppedAreaPixels: Area): Promise<File> {
 	const image = await new Promise<HTMLImageElement>((resolve, reject) => {
 		const img = new Image()
 		img.addEventListener('load', () => resolve(img))
@@ -55,17 +52,10 @@ async function getCroppedImg(
 	})
 }
 
-export function CropAvatarModal({
-	imageSrc,
-	isOpen,
-	onClose,
-	onCropComplete
-}: CropAvatarModalProps) {
+export function CropAvatarModal({ imageSrc, isOpen, onClose, onCropComplete }: CropAvatarModalProps) {
 	const [crop, setCrop] = useState({ x: 0, y: 0 })
 	const [zoom, setZoom] = useState(1)
-	const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(
-		null
-	)
+	const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
 	const [isProcessing, setIsProcessing] = useState(false)
 
 	const onCropCompleteCallback = useCallback((_: Area, pixels: Area) => {
@@ -93,19 +83,10 @@ export function CropAvatarModal({
 			showCloseButton={!isProcessing}
 			footer={
 				<>
-					<Button
-						variant='secondary'
-						onClick={onClose}
-						disabled={isProcessing}
-					>
+					<Button variant='secondary' onClick={onClose} disabled={isProcessing}>
 						Отмена
 					</Button>
-					<Button
-						variant='default'
-						onClick={handleConfirm}
-						loading={isProcessing}
-						disabled={isProcessing}
-					>
+					<Button variant='default' onClick={handleConfirm} loading={isProcessing} disabled={isProcessing}>
 						Применить
 					</Button>
 				</>

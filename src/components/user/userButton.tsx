@@ -1,21 +1,7 @@
 'use client'
 import { useMutation } from '@apollo/client/react'
-import {
-	Menu,
-	MenuButton,
-	MenuItem,
-	MenuItems,
-	Transition
-} from '@headlessui/react'
-import {
-	Bell,
-	Globe,
-	HandHelping,
-	LogOut,
-	Settings,
-	Shield,
-	User2
-} from 'lucide-react'
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
+import { Bell, Globe, HandHelping, LogOut, Settings, Shield, User2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -91,9 +77,7 @@ export const UserButton = memo(function UserButton() {
 									/>
 								) : (
 									<div className='from-primary to-accent text-primary-foreground border-border flex h-12 w-12 items-center justify-center rounded-full border-2 bg-linear-to-br text-xl font-semibold'>
-										{user.user?.displayName
-											.slice(0, 1)
-											.toUpperCase()}
+										{user.user?.displayName.slice(0, 1).toUpperCase()}
 									</div>
 								)}
 							</div>
@@ -114,11 +98,7 @@ export const UserButton = memo(function UserButton() {
 								href={'/user/' + user.user?.userName}
 							/>
 
-							<MenuItemButton
-								icon={<Settings />}
-								label={t('dashboard')}
-								href='/dashboard/settings'
-							/>
+							<MenuItemButton icon={<Settings />} label={t('dashboard')} href='/dashboard/settings' />
 						</div>
 						<div className='bg-border my-1 h-px' />
 						<div className='py-1'>
@@ -128,21 +108,13 @@ export const UserButton = memo(function UserButton() {
 							<MenuItemButton
 								icon={<Globe />}
 								label='Язык'
-								onClick={() =>
-									toast.info('Функция в разработке')
-								}
-								endContent={
-									<span className='text-muted-foreground ml-auto text-[13px]'>
-										Русский
-									</span>
-								}
+								onClick={() => toast.info('Функция в разработке')}
+								endContent={<span className='text-muted-foreground ml-auto text-[13px]'>Русский</span>}
 							/>
 							<MenuItemButton
 								icon={<Bell />}
 								label='Уведомления'
-								onClick={() =>
-									toast.info('Функция в разработке')
-								}
+								onClick={() => toast.info('Функция в разработке')}
 							/>
 						</div>
 						<div className='bg-border my-1 h-px' />
@@ -150,16 +122,12 @@ export const UserButton = memo(function UserButton() {
 							<MenuItemButton
 								icon={<Shield />}
 								label='Безопасность'
-								onClick={() =>
-									toast.info('Функция в разработке')
-								}
+								onClick={() => toast.info('Функция в разработке')}
 							/>
 							<MenuItemButton
 								icon={<HandHelping />}
 								label='Помощь'
-								onClick={() =>
-									toast.info('Функция в разработке')
-								}
+								onClick={() => toast.info('Функция в разработке')}
 							/>
 						</div>
 						<div className='bg-border my-1 h-px' />

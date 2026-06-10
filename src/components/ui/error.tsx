@@ -44,10 +44,7 @@ export const ErrorMessage = ({
 
 	return (
 		<div className={cn(errorVariants({ size, layout }), className)}>
-			<AlertCircle
-				className='text-destructive shrink-0'
-				size={errorIconSizeMap[size ?? 'md']}
-			/>
+			<AlertCircle className='text-destructive shrink-0' size={errorIconSizeMap[size ?? 'md']} />
 			<span className='text-destructive'>{displayText}</span>
 		</div>
 	)

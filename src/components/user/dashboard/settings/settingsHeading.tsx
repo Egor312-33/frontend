@@ -8,11 +8,7 @@ interface SettingsHeadingProps {
 	placeholder: string
 }
 
-export function SettingsHeading({
-	header,
-	placeholder,
-	children
-}: SettingsHeadingProps) {
+export function SettingsHeading({ header, placeholder, children }: SettingsHeadingProps) {
 	return (
 		<div className='flex flex-col gap-5'>
 			<div className='relative'>

@@ -1,3 +1,4 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 import { withNextVideo } from "next-video/process";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin'
@@ -31,4 +32,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextVideo(withNextIntl(nextConfig));
+export default withPayload(withNextVideo(withNextIntl(nextConfig)));

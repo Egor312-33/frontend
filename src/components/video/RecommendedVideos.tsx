@@ -3,7 +3,6 @@
 import { Clock, Eye } from 'lucide-react'
 import Image from 'next/image'
 
-
 const STUB_VIDEOS = [
 	{
 		id: '1',
@@ -55,9 +54,7 @@ const STUB_VIDEOS = [
 export function RecommendedVideos() {
 	return (
 		<div className='flex flex-col gap-4'>
-			<h2 className='text-foreground m-0 px-0 text-base font-semibold'>
-				Рекомендуем
-			</h2>
+			<h2 className='text-foreground m-0 px-0 text-base font-semibold'>Рекомендуем</h2>
 
 			<div className='flex flex-col gap-3'>
 				{STUB_VIDEOS.map(video => (
@@ -66,7 +63,6 @@ export function RecommendedVideos() {
 						href={`/videos/${video.slug}`}
 						className='hover:bg-secondary/50 group flex cursor-pointer gap-3 rounded-xl p-2 transition-colors duration-150'
 					>
-
 						<div className='bg-secondary relative h-23.5 w-42 shrink-0 overflow-hidden rounded-lg'>
 							{video.thumbnailUrl ? (
 								<Image
@@ -96,9 +92,7 @@ export function RecommendedVideos() {
 							<p className='text-foreground group-hover:text-primary m-0 line-clamp-2 text-[13px] leading-snug font-semibold transition-colors duration-150'>
 								{video.title}
 							</p>
-							<span className='text-muted-foreground text-xs'>
-								{video.author}
-							</span>
+							<span className='text-muted-foreground text-xs'>{video.author}</span>
 							<span className='text-muted-foreground flex items-center gap-1 text-xs'>
 								<Eye size={11} />
 								{video.views} просмотров

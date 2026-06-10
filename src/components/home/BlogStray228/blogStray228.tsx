@@ -38,31 +38,17 @@ export async function BlogStray228() {
 				<div className='mx-auto max-w-6xl'>
 					<div className='grid grid-cols-1 gap-8 pb-10 md:grid-cols-[auto_1fr] md:grid-rows-[auto_auto] lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr]'>
 						<div className='max-w-2xl space-y-6 md:col-start-1 md:row-start-1 lg:pr-16'>
-							<Typography
-								variant='title-1'
-								tag='h3'
-								className='text-3xl sm:text-4xl lg:text-5xl'
-							>
-								Главный попуск и амбассадор gachi-культуры
-								Stray228
+							<Typography variant='title-1' tag='h3' className='text-3xl sm:text-4xl lg:text-5xl'>
+								Главный попуск и амбассадор gachi-культуры Stray228
 							</Typography>
-							<Typography
-								variant='body-1'
-								tag='p'
-								className='text-muted-foreground leading-relaxed'
-							>
-								Усатая жужулица, известная как белгородский
-								фрик, obla-дающий порванным бубновым тузом.
-								Данный представитель млекопитающих, 6 лет играет
-								в dota2, чтобы слушать и развивать gachi, данной
-								крысе, принадлежит хит &quot;Обожаю ММ right
-								version&quot;
+							<Typography variant='body-1' tag='p' className='text-muted-foreground leading-relaxed'>
+								Усатая жужулица, известная как белгородский фрик, obla-дающий порванным бубновым тузом.
+								Данный представитель млекопитающих, 6 лет играет в dota2, чтобы слушать и развивать
+								gachi, данной крысе, принадлежит хит &quot;Обожаю ММ right version&quot;
 							</Typography>
 							<div className='flex gap-3'>
 								<Button variant='default'>Автор</Button>
-								<Button variant='secondary'>
-									Узнать больше
-								</Button>
+								<Button variant='secondary'>Узнать больше</Button>
 							</div>
 						</div>
 
@@ -77,20 +63,12 @@ export async function BlogStray228() {
 										key={idx}
 										className='border-border flex flex-col-reverse items-start pl-6 first:pl-0 last:border-r-0'
 										style={{
-											borderRight:
-												idx !== numbers.length - 1
-													? '1px solid var(--border)'
-													: 'none'
+											borderRight: idx !== numbers.length - 1 ? '1px solid var(--border)' : 'none'
 										}}
 									>
-										<dt className='text-muted-foreground text-sm'>
-											{item.text}
-										</dt>
+										<dt className='text-muted-foreground text-sm'>{item.text}</dt>
 										<dd className='text-foreground text-3xl font-semibold'>
-											<span className='text-primary'>
-												{item.number}
-											</span>
-											K
+											<span className='text-primary'>{item.number}</span>K
 										</dd>
 									</div>
 								))}
@@ -123,8 +101,7 @@ function RotatingCube({ slides }: { slides: string[] }) {
 							height={300}
 							className='h-full w-full rounded object-cover object-center p-0.5'
 							style={{
-								background:
-									'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)'
+								background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)'
 							}}
 						/>
 					</div>
@@ -137,11 +114,11 @@ function RotatingCube({ slides }: { slides: string[] }) {
 function getCubeFaceTransform(index: number): string {
 	const transforms = [
 		'rotateY(0deg) translateZ(var(--cube-size))',
-		'rotateY(180deg) translateZ(var(--cube-size))', 
-		'rotateY(90deg) translateZ(var(--cube-size))', 
-		'rotateY(-90deg) translateZ(var(--cube-size))', 
-		'rotateX(90deg) translateZ(var(--cube-size))', 
-		'rotateX(-90deg) translateZ(var(--cube-size))' 
+		'rotateY(180deg) translateZ(var(--cube-size))',
+		'rotateY(90deg) translateZ(var(--cube-size))',
+		'rotateY(-90deg) translateZ(var(--cube-size))',
+		'rotateX(90deg) translateZ(var(--cube-size))',
+		'rotateX(-90deg) translateZ(var(--cube-size))'
 	]
 
 	return transforms[index] || transforms[0]

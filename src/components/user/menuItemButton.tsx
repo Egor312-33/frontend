@@ -13,23 +13,10 @@ interface MenuItemButtonProps {
 	endContent?: React.ReactNode
 }
 
-export function MenuItemButton({
-	icon,
-	label,
-	href,
-	onClick,
-	variant = 'ghost',
-	endContent
-}: MenuItemButtonProps) {
+export function MenuItemButton({ icon, label, href, onClick, variant = 'ghost', endContent }: MenuItemButtonProps) {
 	return (
 		<MenuItem>
-			<Button
-				href={href}
-				onClick={onClick}
-				startIcon={icon}
-				variant={variant}
-				alignLeft
-			>
+			<Button href={href} onClick={onClick} startIcon={icon} variant={variant} alignLeft>
 				{label}
 				{endContent}
 			</Button>

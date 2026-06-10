@@ -1,11 +1,6 @@
 'use client'
 
-import {
-	Popover,
-	PopoverButton,
-	PopoverPanel,
-	Transition
-} from '@headlessui/react'
+import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react'
 import { CirclePlus, Clapperboard, FileText, Radio } from 'lucide-react'
 import { Fragment, useState } from 'react'
 
@@ -61,12 +56,7 @@ export function UserCreateButton() {
 												variant='ghost'
 												size='sm'
 												alignLeft
-												startIcon={
-													<Icon
-														size={20}
-														className='text-muted-foreground'
-													/>
-												}
+												startIcon={<Icon size={20} className='text-muted-foreground' />}
 												onClick={() => {
 													close()
 													setActiveModal(option.id)

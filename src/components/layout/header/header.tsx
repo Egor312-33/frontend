@@ -22,9 +22,7 @@ export function Header() {
 				isCollapsed ? 'left-0 md:left-12' : 'left-0 md:left-64'
 			} `}
 		>
-			<div
-				className={`flex items-center gap-2 ${isSearchOpen ? 'hidden md:flex' : 'flex'}`}
-			>
+			<div className={`flex items-center gap-2 ${isSearchOpen ? 'hidden md:flex' : 'flex'}`}>
 				<button
 					onClick={isCollapsed ? open : close}
 					className='hover:bg-secondary/50 text-foreground rounded-lg p-2 transition-colors md:hidden'
@@ -45,22 +43,16 @@ export function Header() {
 						height={40}
 						className='shrink-0'
 					/>
-					<span className='hidden text-base font-medium sm:inline'>
-						trash-streamers
-					</span>
+					<span className='hidden text-base font-medium sm:inline'>trash-streamers</span>
 				</Link>
 			</div>
 
 			<div
 				className={`flex-1 transition-all duration-300 ${
-					isSearchOpen
-						? 'max-w-full'
-						: 'max-w-0 md:max-w-125 lg:max-w-125'
+					isSearchOpen ? 'max-w-full' : 'max-w-0 md:max-w-125 lg:max-w-125'
 				} `}
 			>
-				<div
-					className={`md:hidden ${isSearchOpen ? 'hidden' : 'flex'}`}
-				>
+				<div className={`md:hidden ${isSearchOpen ? 'hidden' : 'flex'}`}>
 					<button
 						onClick={() => setIsSearchOpen(true)}
 						className='hover:bg-secondary/50 text-foreground rounded-lg p-2 transition-colors'
@@ -70,19 +62,12 @@ export function Header() {
 					</button>
 				</div>
 
-				<div
-					className={`${isSearchOpen ? 'flex' : 'hidden md:flex'} w-full`}
-				>
-					<SearchHeader
-						onClose={() => setIsSearchOpen(false)}
-						isOpen={isSearchOpen}
-					/>
+				<div className={`${isSearchOpen ? 'flex' : 'hidden md:flex'} w-full`}>
+					<SearchHeader onClose={() => setIsSearchOpen(false)} isOpen={isSearchOpen} />
 				</div>
 			</div>
 
-			<div
-				className={`flex items-center gap-2 ${isSearchOpen ? 'hidden md:flex' : 'flex'}`}
-			>
+			<div className={`flex items-center gap-2 ${isSearchOpen ? 'hidden md:flex' : 'flex'}`}>
 				{user ? (
 					<>
 						<UserCreateButton />
@@ -100,13 +85,7 @@ export function Header() {
 	)
 }
 
-function SearchHeader({
-	onClose,
-	isOpen
-}: {
-	onClose: () => void
-	isOpen: boolean
-}) {
+function SearchHeader({ onClose, isOpen }: { onClose: () => void; isOpen: boolean }) {
 	return (
 		<div className='relative flex w-full items-center gap-2'>
 			<div className='relative w-full'>

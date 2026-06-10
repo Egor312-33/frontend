@@ -30,9 +30,7 @@ export function Sidebar() {
 					'bg-background border-border border-r',
 					'transition-all duration-300 ease-in-out',
 					isCollapsed ? 'md:w-12' : 'md:w-64',
-					isCollapsed
-						? '-translate-x-full md:translate-x-0'
-						: 'w-64 translate-x-0'
+					isCollapsed ? '-translate-x-full md:translate-x-0' : 'w-64 translate-x-0'
 				)}
 			>
 				<div className='hidden shrink-0 md:block'>
@@ -42,7 +40,7 @@ export function Sidebar() {
 				<nav
 					className={cn(
 						'flex-1 overflow-y-auto',
-						'scrollbar-thin scrollbar-track-secondary scrollbar-thumb-border',
+						'scrollbar-track-secondary scrollbar-thumb-border scrollbar-thin',
 						'hover:scrollbar-thumb-muted-foreground',
 						isCollapsed ? 'hidden md:block' : 'block',
 						'mt-12 md:mt-0'

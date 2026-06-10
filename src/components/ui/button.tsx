@@ -39,10 +39,7 @@ const buttonVariants = cva(
 	}
 )
 
-interface ButtonProps
-	extends
-		React.ButtonHTMLAttributes<HTMLButtonElement>,
-		VariantProps<typeof buttonVariants> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
 	loading?: boolean
 	startIcon?: React.ReactNode
 	endIcon?: React.ReactNode
@@ -72,19 +69,11 @@ export function Button({
 				<span className='mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent' />
 			)}
 
-			{startIcon && !loading && (
-				<span className='flex items-center justify-center'>
-					{startIcon}
-				</span>
-			)}
+			{startIcon && !loading && <span className='flex items-center justify-center'>{startIcon}</span>}
 
 			{children}
 
-			{endIcon && (
-				<span className='flex items-center justify-center'>
-					{endIcon}
-				</span>
-			)}
+			{endIcon && <span className='flex items-center justify-center'>{endIcon}</span>}
 		</>
 	)
 

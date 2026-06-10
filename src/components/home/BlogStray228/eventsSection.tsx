@@ -56,10 +56,7 @@ function EventCard({ title, subtitle, details, icon: Icon }: EventCardProps) {
 				</div>
 
 				<div className='flex items-start justify-between gap-4'>
-					<Link
-						href='/'
-						className='group hover:text-primary flex-1 space-y-1 transition-colors'
-					>
+					<Link href='/' className='group hover:text-primary flex-1 space-y-1 transition-colors'>
 						<Typography
 							variant='title-4'
 							tag='h4'
@@ -67,11 +64,7 @@ function EventCard({ title, subtitle, details, icon: Icon }: EventCardProps) {
 						>
 							{title}
 						</Typography>
-						<Typography
-							variant='sub-title'
-							tag='p'
-							className='text-muted-foreground'
-						>
+						<Typography variant='sub-title' tag='p' className='text-muted-foreground'>
 							{subtitle}
 						</Typography>
 					</Link>
@@ -83,11 +76,7 @@ function EventCard({ title, subtitle, details, icon: Icon }: EventCardProps) {
 						<ArrowUpRight className='text-muted-foreground hover:text-primary h-5 w-5 transition-colors' />
 					</Link>
 				</div>
-				<Typography
-					variant='body-3'
-					tag='p'
-					className='text-muted-foreground'
-				>
+				<Typography variant='body-3' tag='p' className='text-muted-foreground'>
 					{details}
 				</Typography>
 			</div>

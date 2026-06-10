@@ -1,34 +1,43 @@
 {
 	"name": "frontend",
-	"version": "0.2.12",
+	"version": "0.3.12",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "eslint",
+		"generate:types": "node --experimental-strip-types --no-require-module -e \"import('./src/payload.config.ts').then(async (cfg) => { const c = await (cfg.default?.default ? cfg.default.default : (cfg.default || cfg)); import('payload/node').then(m => m.generateTypes(c)) })\"",
 		"graphql-codegen": "bunx graphql-codegen --config codegen.ts"
 	},
 	"dependencies": {
 		"@apollo/client": "^4.0.13",
 		"@headlessui/react": "^2.2.9",
 		"@hookform/resolvers": "^5.2.2",
+		"@payloadcms/db-postgres": "^3.85.0",
+		"@payloadcms/next": "^3.85.0",
+		"@payloadcms/richtext-lexical": "^3.85.0",
 		"apollo-upload-client": "^19.0.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
-		"graphql": "^16.12.0",
+		"framer-motion": "^12.40.0",
+		"graphql": "^16.8.1",
 		"graphql-ws": "^6.0.6",
 		"input-otp": "^1.4.2",
 		"lucide-react": "^0.563.0",
-		"next": "16.1.1",
+		"next": "^16.2.6",
 		"next-intl": "^4.7.0",
 		"next-themes": "^0.4.6",
 		"next-video": "^2.6.0",
+		"payload": "^3.85.0",
 		"react": "19.2.3",
 		"react-dom": "19.2.3",
 		"react-dropzone": "^15.0.0",
 		"react-easy-crop": "^5.5.6",
 		"react-hook-form": "^7.71.1",
+		"react-lite-youtube-embed": "^3.5.1",
+		"recharts": "^3.8.1",
 		"sonner": "^2.0.7",
 		"tailwind-merge": "^3.4.0",
 		"zod": "^4.3.5",
@@ -50,6 +59,7 @@
 		"prettier": "^3.7.4",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"tailwindcss": "^4",
+		"tsx": "^4.22.3",
 		"typescript": "^5"
 	},
 	"ignoreScripts": [
@@ -57,7 +67,13 @@
 		"unrs-resolver"
 	],
 	"trustedDependencies": [
+		"@parcel/watcher",
+		"@swc/core",
+		"esbuild",
 		"sharp",
 		"unrs-resolver"
-	]
+	],
+	"overrides": {
+		"tsx": "4.22.3"
+	}
 }

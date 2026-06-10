@@ -17,7 +17,7 @@ export async function VideoWatch({ video }: VideoWatchProps) {
 					<VideoInfo video={video} />
 				</div>
 
-				<aside className='scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent xl:sticky xl:top-6 xl:max-h-[calc(100vh-3rem)] xl:overflow-y-auto xl:pr-1'>
+				<aside className='scrollbar-thumb-border scrollbar-thin scrollbar-track-transparent xl:sticky xl:top-6 xl:max-h-[calc(100vh-3rem)] xl:overflow-y-auto xl:pr-1'>
 					<RecommendedVideos />
 				</aside>
 			</div>

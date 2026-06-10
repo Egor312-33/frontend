@@ -8,12 +8,9 @@ import { Loading } from '@/components/ui/loading'
 import Typography from '@/components/ui/typography'
 
 import { useCryptoKeys } from '@/hooks/useCryptoKeys'
-import {
-	GetUserSystemMessagesDocument,
-	SecurityNotificationDocument
-} from '@/shared/gql/graphql'
-import { decryptAllMessages, decryptChatKey, decryptMessage, type DecryptedMessage } from './decryptMessages'
 
+import { type DecryptedMessage, decryptAllMessages, decryptChatKey, decryptMessage } from './decryptMessages'
+import { GetUserSystemMessagesDocument, SecurityNotificationDocument } from '@/shared/gql/graphql'
 
 interface SystemChatProps {
 	chatId: string
@@ -21,14 +18,14 @@ interface SystemChatProps {
 
 export function SystemChat({ chatId }: SystemChatProps) {
 	const keys = useCryptoKeys()
-	const [messages, setMessages]     = useState<DecryptedMessage[]>([])
-	const [aesKey, setAesKey]         = useState<CryptoKey | null>(null)
+	const [messages, setMessages] = useState<DecryptedMessage[]>([])
+	const [aesKey, setAesKey] = useState<CryptoKey | null>(null)
 	const [decrypting, setDecrypting] = useState(false)
 
 	const { data, loading, error } = useQuery(GetUserSystemMessagesDocument, {
-		variables:   { publicKey: keys?.publicKeyPem ?? '' },
-		skip:        !keys,
-		fetchPolicy: 'network-only' 
+		variables: { publicKey: keys?.publicKeyPem ?? '' },
+		skip: !keys,
+		fetchPolicy: 'network-only'
 	})
 
 	useEffect(() => {
@@ -38,9 +35,7 @@ export function SystemChat({ chatId }: SystemChatProps) {
 		setDecrypting(true)
 		decryptAllMessages(raw, encryptedChatKey, keys.privateKey)
 			.then(async decrypted => {
-				setMessages(decrypted.sort(
-					(a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-				))
+				setMessages(decrypted.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()))
 				const ck = await decryptChatKey(encryptedChatKey, keys.privateKey)
 				setAesKey(ck)
 			})
@@ -53,20 +48,15 @@ export function SystemChat({ chatId }: SystemChatProps) {
 			const notif = sub.data?.securityNotification
 			if (!notif || !aesKey) return
 
-			const text = await decryptMessage(
-				notif.content,
-				notif.iv,
-				notif.authTag,
-				aesKey
-			)
+			const text = await decryptMessage(notif.content, notif.iv, notif.authTag, aesKey)
 
 			setMessages(prev => [
 				...prev,
 				{
-					id:        notif.messageId,
+					id: notif.messageId,
 					text,
 					createdAt: new Date().toISOString(),
-					senderId:  'SYSTEM'
+					senderId: 'SYSTEM'
 				}
 			])
 		}
@@ -74,14 +64,15 @@ export function SystemChat({ chatId }: SystemChatProps) {
 
 	if (!keys || loading || decrypting) return <Loading />
 
-	if (error) return (
-		<div className='flex flex-col items-center gap-3 py-16 text-center'>
-			<ShieldAlert className='text-destructive h-10 w-10' />
-			<Typography variant='body-2' className='text-destructive'>
-				Ошибка загрузки сообщений
-			</Typography>
-		</div>
-	)
+	if (error)
+		return (
+			<div className='flex flex-col items-center gap-3 py-16 text-center'>
+				<ShieldAlert className='text-destructive h-10 w-10' />
+				<Typography variant='body-2' className='text-destructive'>
+					Ошибка загрузки сообщений
+				</Typography>
+			</div>
+		)
 
 	return (
 		<div className='flex h-full flex-col'>
@@ -106,9 +97,7 @@ export function SystemChat({ chatId }: SystemChatProps) {
 						<Typography variant='body-3'>Нет сообщений</Typography>
 					</div>
 				) : (
-					messages.map(msg => (
-						<MessageBubble key={msg.id} message={msg} />
-					))
+					messages.map(msg => <MessageBubble key={msg.id} message={msg} />)
 				)}
 			</div>
 		</div>
@@ -118,7 +107,7 @@ export function SystemChat({ chatId }: SystemChatProps) {
 function MessageBubble({ message }: { message: DecryptedMessage }) {
 	const date = new Date(message.createdAt)
 	const time = date.toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' })
-	const day  = date.toLocaleDateString('ru', { day: 'numeric', month: 'long' })
+	const day = date.toLocaleDateString('ru', { day: 'numeric', month: 'long' })
 
 	return (
 		<div className='flex flex-col gap-1'>

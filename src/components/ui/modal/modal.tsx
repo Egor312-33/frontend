@@ -1,12 +1,6 @@
 'use client'
 
-import {
-	Dialog,
-	DialogPanel,
-	DialogTitle,
-	Transition,
-	TransitionChild
-} from '@headlessui/react'
+import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react'
 import { type VariantProps, cva } from 'class-variance-authority'
 import { LucideX } from 'lucide-react'
 import { Fragment, ReactNode } from 'react'
@@ -92,10 +86,7 @@ export const Modal = ({
 					leaveFrom='opacity-100'
 					leaveTo='opacity-0'
 				>
-					<div
-						className='bg-background/80 fixed inset-0 backdrop-blur-sm'
-						aria-hidden='true'
-					/>
+					<div className='bg-background/80 fixed inset-0 backdrop-blur-sm' aria-hidden='true' />
 				</TransitionChild>
 
 				<div className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4'>
@@ -109,9 +100,7 @@ export const Modal = ({
 							leaveFrom='opacity-100 scale-100'
 							leaveTo='opacity-0 scale-95'
 						>
-							<DialogPanel
-								className={cn(modalVariants({ variant, size }))}
-							>
+							<DialogPanel className={cn(modalVariants({ variant, size }))}>
 								<div className='modal-top-line absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent to-transparent' />
 
 								{(title || showCloseButton) && (
