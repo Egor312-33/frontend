@@ -2,8 +2,11 @@
 
 import { type VariantProps, cva } from 'class-variance-authority'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 import { cn } from '@/components/lib/utils'
+
+import { getMediaCMS } from '@/utils/get-media-source'
 
 const pageShellVariants = cva('relative w-full overflow-hidden', {
 	variants: {
@@ -60,14 +63,21 @@ export function PageShell({
 		<section className={cn('relative', className)}>
 			<div className={cn(pageShellVariants({ radius }), bannerClassName)} style={{ height: bannerHeight }}>
 				{bannerUrl ? (
-					<motion.img
-						initial={animate ? { scale: 1.05, opacity: 0 } : false}
-						animate={animate ? { scale: 1, opacity: 1 } : false}
-						transition={{ duration: 0.8, ease: 'easeOut' }}
-						src={bannerUrl}
-						alt={bannerAlt}
-						className='absolute inset-0 h-full w-full object-cover'
-					/>
+					<motion.div
+						initial={animate ? { scale: 1.06 } : false}
+						animate={animate ? { scale: 1 } : false}
+						transition={{ duration: 1.4, ease: 'easeOut' }}
+						className='absolute inset-0'
+					>
+						<Image
+							src={getMediaCMS(bannerUrl)}
+							alt={bannerAlt}
+							fill
+							priority
+							sizes='(max-width: 1152px) 100vw, 1152px'
+							className='h-full w-full object-cover'
+						/>
+					</motion.div>
 				) : (
 					<div className='from-primary/10 via-accent/5 to-background absolute inset-0 h-full w-full bg-linear-to-br' />
 				)}

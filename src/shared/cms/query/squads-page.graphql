@@ -1,0 +1,54 @@
+query GetSquadsPage {
+	Squads(sort: "name", limit: 100) {
+		totalDocs
+		docs {
+			id
+			name
+			slug
+			logo {
+				url
+				alt
+			}
+			banner {
+				url
+				alt
+			}
+
+			totalMembers: members {
+				docs {
+					id
+				}
+			}
+
+			currentMembers: members(where: { leaveDate: { exists: false } }) {
+				docs {
+					id
+					role
+					streamer {
+						id
+						name
+						avatar {
+							url
+							alt
+						}
+					}
+				}
+			}
+
+			epochs(sort: "dateStart") {
+				docs {
+					id
+					dateStart
+					dateEnd
+				}
+			}
+		}
+	}
+
+	totalEpochs: Epochs(limit: 1) {
+		totalDocs
+	}
+	totalStreamers: Streamers(limit: 1) {
+		totalDocs
+	}
+}

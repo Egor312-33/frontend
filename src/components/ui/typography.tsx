@@ -8,10 +8,10 @@ const typographyVariants = cva('', {
 	variants: {
 		variant: {
 			'title-1': 'text-3xl font-semibold text-title mb-2',
-			'title-2': 'scroll-m-20 text-3xl font-semibold tracking-tight',
+			'title-2': 'scroll-m-20 text-3xl font-semibold tracking-tight text-title',
 			'title-3': 'scroll-m-20 text-2xl font-semibold text-title tracking-tight',
-			'title-4': 'scroll-m-20 text-xl font-semibold tracking-tight',
-			'title-5': 'text-lg font-semibold',
+			'title-4': 'scroll-m-20 text-xl font-semibold tracking-tight text-title',
+			'title-5': 'text-lg font-semibold text-title',
 			'sub-title': 'text-lg text-muted-foreground leading-relaxed',
 			'body-1': 'text-base leading-7',
 			'body-2': 'text-sm font-medium leading-none',
@@ -26,7 +26,6 @@ const typographyVariants = cva('', {
 		variant: 'body-1'
 	}
 })
-
 export type TypographyProps<T extends TypographyTag> = React.ComponentPropsWithoutRef<T> &
 	VariantProps<typeof typographyVariants> & {
 		tag?: T

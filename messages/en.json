@@ -243,5 +243,25 @@
 	},
 	"video": {
 		"notFound": "Video not found or removed."
+	},
+	"squadCard": {
+		"members": "{count, plural, one {# member} other {# members}}",
+		"epochs": "{count, plural, one {# epoch} other {# epochs}}"
+	},
+	"squadPage": {
+		"tabs": {
+			"members": "Members",
+			"epochs": "Epochs",
+			"events": "Events",
+			"charts": "Stats",
+			"about": "History"
+		}
+	},
+	"streamerPage": {
+		"epochsSidebar": {
+			"title": "Epochs",
+			"empty": "No epochs found",
+			"ongoing": "present"
+		}
 	}
 }

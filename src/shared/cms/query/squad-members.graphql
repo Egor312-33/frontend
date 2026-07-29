@@ -1,0 +1,26 @@
+query GetSquadMembers($streamerId: JSON) {
+	SquadMembers(where: { streamer: { equals: $streamerId } }, sort: "-joinDate", limit: 20) {
+		docs {
+			id
+			role
+			joinDate
+			leaveDate
+			streamer {
+				id
+				name
+				slug
+				avatar {
+					url
+				}
+			}
+			squad {
+				id
+				name
+				slug
+				logo {
+					url
+				}
+			}
+		}
+	}
+}

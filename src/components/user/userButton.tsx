@@ -12,6 +12,7 @@ import { useCurrent } from '@/hooks/useCurrent'
 
 import { MenuItemButton } from './menuItemButton'
 import { ThemeSwitch } from './themeSwitch'
+import { client } from '@/shared/apolo-client'
 import { LogoutUserDocument } from '@/shared/gql/graphql'
 import { getMediaSource } from '@/utils/get-media-source'
 
@@ -23,8 +24,10 @@ export const UserButton = memo(function UserButton() {
 	const router = useRouter()
 
 	const [logout] = useMutation(LogoutUserDocument, {
-		onCompleted() {
+		onCompleted: async () => {
+			localStorage.removeItem('accessToken')
 			toast.success(t('successMessage'))
+			await client.clearStore()
 			router.push('/auth/login/otp')
 		},
 		onError() {

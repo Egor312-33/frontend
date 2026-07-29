@@ -1,0 +1,15 @@
+query FindAllFilterVideos($input: FindAllFilterVideosInput!) {
+	findAllFilterVideos(input: $input) {
+		id
+		slug
+		title
+		description
+		thumbnailUrl
+		durationSeconds
+		access
+		status
+		ownerId
+		createdAt
+		updatedAt
+	}
+}

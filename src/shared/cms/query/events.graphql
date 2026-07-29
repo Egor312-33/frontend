@@ -1,0 +1,50 @@
+query GetEvents($streamerId: JSON) {
+	Events(where: { streamersPresent: { equals: $streamerId } }, sort: "-date", limit: 20) {
+		docs {
+			id
+			title
+			date
+			type
+			epoch {
+				id
+				title
+			}
+			grid {
+				id
+				title
+				type
+				cover {
+					url
+				}
+			}
+			contentBlocks {
+				... on EventYoutube {
+					id
+					blockType
+					url
+					caption
+				}
+				... on EventQuote {
+					id
+					blockType
+					text
+					author
+				}
+				... on EventReport {
+					id
+					blockType
+					title
+					htmlReport
+				}
+				... on EventSMC {
+					id
+					blockType
+					videoSlug
+					videoId
+					videoTitle
+					caption
+				}
+			}
+		}
+	}
+}

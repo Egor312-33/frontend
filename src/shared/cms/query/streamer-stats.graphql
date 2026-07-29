@@ -1,0 +1,23 @@
+# src/shared/cms/query/GetStreamerStats.graphql
+query GetStreamerStats($streamerIdJson: JSON, $streamerId: Int!, $recentLimit: Int) {
+	allEvents: Events(where: { streamersPresent: { equals: $streamerIdJson } }) {
+		totalDocs
+	}
+	soloEvents: Events(where: { streamersPresent: { equals: $streamerIdJson }, grid: { exists: false } }) {
+		totalDocs
+	}
+	recentEvents: Events(where: { streamersPresent: { equals: $streamerIdJson } }, sort: "-date", limit: $recentLimit) {
+		docs {
+			id
+			title
+			date
+		}
+	}
+	gridCounts: GridCounts(streamerId: $streamerId) {
+		marathon
+		tournament
+		series
+		collab
+		festival
+	}
+}

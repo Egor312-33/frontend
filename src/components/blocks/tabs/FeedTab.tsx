@@ -1,31 +1,34 @@
+// src/components/blocks/tabs/FeedTab.tsx
 'use client'
 
 import { useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 
-import type { CategoryKey, StreamGridForView } from '../../lib/eventLayouts'
+import type { CategoryKey } from '../../lib/eventLayouts'
 import { CategoryStrip } from '../CategoryStrip'
+import { GetStreamerPageType } from '../blocks.types'
 import { EventTimelineBlock } from '../universal/EventTimelineBlock'
 import { QuoteBlock } from '../universal/QuoteBlock'
 import { YoutubeEmbedBlock } from '../universal/YoutubeEmbedBlock'
 
-import type { Streamer } from '@/payload-types'
+import type { GetStreamerGridsQuery, GetStreamerStatsQuery } from '@/shared/gql/cms/graphql'
 
-type FeedTabProps = {
-	blocks?: Streamer['blocks']
-	streamGrids: StreamGridForView[]
-	counts: Record<CategoryKey, number>
-	theme: string
-	visualConfig: NonNullable<Streamer['streamerVisualConfig']>
+type StreamGridDoc = NonNullable<GetStreamerGridsQuery['StreamGrids']>['docs'][number]
+type CountsType = NonNullable<GetStreamerStatsQuery['StreamerStats']>['counts']
+interface FeedTabProps {
+	blocks?: GetStreamerPageType['blocks']
+	streamGrids?: StreamGridDoc[]
+	counts?: CountsType
 	epochsSidebar: ReactNode
 }
 
-export function FeedTab({ blocks, streamGrids, counts, theme, visualConfig, epochsSidebar }: FeedTabProps) {
+export function FeedTab({ blocks, streamGrids, counts, epochsSidebar }: FeedTabProps) {
 	const [activeCategory, setActiveCategory] = useState<CategoryKey>('all')
 
 	const otherBlocks = blocks?.filter(b => b.blockType !== 'hero') ?? []
 
 	const filteredGrids = useMemo(() => {
+		if (!streamGrids) return []
 		if (activeCategory === 'all' || activeCategory === 'events') return streamGrids
 		return streamGrids.filter(g => g.type === activeCategory)
 	}, [streamGrids, activeCategory])
@@ -47,9 +50,7 @@ export function FeedTab({ blocks, streamGrids, counts, theme, visualConfig, epoc
 								title={grid.title}
 								type={grid.type}
 								cover={grid.cover}
-								events={grid.events}
-								theme={theme}
-								vibeAccent={visualConfig.vibeAccent}
+								events={grid.events?.docs}
 							/>
 						))
 					)}
@@ -64,11 +65,11 @@ export function FeedTab({ blocks, streamGrids, counts, theme, visualConfig, epoc
 												key={block.id}
 												url={block.url ?? ''}
 												caption={block.caption}
-												theme={theme}
 											/>
 										)
 									case 'quote':
-										return <QuoteBlock key={block.id} {...block} theme={theme} />
+										if (!block.text) return null
+										return <QuoteBlock key={block.id} text={block.text} author={block.author} />
 									default:
 										return null
 								}

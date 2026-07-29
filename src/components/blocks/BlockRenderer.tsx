@@ -5,8 +5,8 @@ import type { ReactNode } from 'react'
 
 import { TabSwitcher } from '../ui/blocks/tab-switcher'
 
-import { HeroBlock } from './universal/HeroBlock'
-import type { Media, SquadMember, Streamer } from '@/payload-types'
+import type { BlockssquadHistory, BlocksstreamerInfo, GetStreamerPageType } from './blocks.types'
+import { HeroBlock } from './preview/heroBlock'
 
 const TABS = [
 	{ key: 'feed', label: 'Лента', icon: Calendar },
@@ -18,16 +18,8 @@ const TABS = [
 type Tab = (typeof TABS)[number]['key']
 
 type BlockRendererProps = {
-	theme?: Streamer['theme']
-	visualConfig: NonNullable<Streamer['streamerVisualConfig']>
-	squadHistory: SquadMember[]
-	streamerInfo: {
-		name: string
-		realName?: string | null
-		nicknames?: { nickname: string; id?: string | null }[] | null
-		avatar?: Media | null
-		banner?: Media | null
-	}
+	squadHistory?: BlockssquadHistory
+	streamerInfo: BlocksstreamerInfo
 	feedTab: ReactNode
 	photosTab: ReactNode
 	infoTab: ReactNode
@@ -35,8 +27,6 @@ type BlockRendererProps = {
 }
 
 export function BlockRenderer({
-	theme = 'archive',
-	visualConfig,
 	squadHistory,
 	streamerInfo,
 	feedTab,
@@ -53,12 +43,7 @@ export function BlockRenderer({
 
 	return (
 		<>
-			<HeroBlock
-				theme={theme}
-				visualConfig={visualConfig}
-				streamerInfo={streamerInfo}
-				squadHistory={squadHistory}
-			/>
+			<HeroBlock streamerInfo={streamerInfo} squadHistory={squadHistory} />
 
 			<div className='mx-auto max-w-7xl px-6 pt-6 pb-20'>
 				<TabSwitcher tabs={TABS} defaultTab='feed' className='space-y-8'>

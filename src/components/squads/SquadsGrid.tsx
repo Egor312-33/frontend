@@ -3,9 +3,10 @@
 import { type Variants, motion } from 'framer-motion'
 import { Shield } from 'lucide-react'
 
-import type { SquadCardForView } from '@/types/squad'
-
 import { SquadCard } from './SquadCard'
+import type { GetSquadsPageQuery } from '@/shared/gql/cms/graphql'
+
+type SquadDoc = NonNullable<GetSquadsPageQuery['Squads']>['docs'][number]
 
 const containerVariants: Variants = {
 	hidden: {},
@@ -14,8 +15,8 @@ const containerVariants: Variants = {
 	}
 }
 
-export function SquadsGrid({ squads }: { squads: SquadCardForView[] }) {
-	if (squads.length === 0) {
+export function SquadsGrid({ squads }: { squads?: SquadDoc[] }) {
+	if (!squads || squads.length === 0) {
 		return (
 			<div className='border-border text-muted-foreground flex flex-col items-center gap-3 rounded-2xl border border-dashed px-6 py-20 text-center'>
 				<Shield className='h-10 w-10 opacity-50' />

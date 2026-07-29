@@ -1,6 +1,6 @@
 {
 	"name": "frontend",
-	"version": "0.3.12",
+	"version": "0.4.0",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -8,15 +8,14 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "eslint",
-		"generate:types": "node --experimental-strip-types --no-require-module -e \"import('./src/payload.config.ts').then(async (cfg) => { const c = await (cfg.default?.default ? cfg.default.default : (cfg.default || cfg)); import('payload/node').then(m => m.generateTypes(c)) })\"",
-		"graphql-codegen": "bunx graphql-codegen --config codegen.ts"
+		"graphql-codegen": "bunx graphql-codegen --config codegen.ts",
+		"test": "vitest",
+		"test:run": "vitest run"
 	},
 	"dependencies": {
 		"@apollo/client": "^4.0.13",
-		"@headlessui/react": "^2.2.9",
+		"@headlessui/react": "^2.2.10",
 		"@hookform/resolvers": "^5.2.2",
-		"@payloadcms/db-postgres": "^3.85.0",
-		"@payloadcms/next": "^3.85.0",
 		"@payloadcms/richtext-lexical": "^3.85.0",
 		"apollo-upload-client": "^19.0.0",
 		"class-variance-authority": "^0.7.1",
@@ -30,7 +29,6 @@
 		"next-intl": "^4.7.0",
 		"next-themes": "^0.4.6",
 		"next-video": "^2.6.0",
-		"payload": "^3.85.0",
 		"react": "19.2.3",
 		"react-dom": "19.2.3",
 		"react-dropzone": "^15.0.0",
@@ -47,20 +45,25 @@
 		"@graphql-codegen/cli": "^6.1.1",
 		"@graphql-codegen/client-preset": "^5.2.2",
 		"@tailwindcss/postcss": "^4",
+		"@testing-library/jest-dom": "^7.0.0",
+		"@testing-library/react": "^16.3.2",
 		"@trivago/prettier-plugin-sort-imports": "^6.0.2",
 		"@types/apollo-upload-client": "^19.0.0",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"@vitejs/plugin-react": "^6.0.4",
 		"babel-plugin-react-compiler": "1.0.0",
 		"dotenv": "^17.2.3",
 		"eslint": "^9",
 		"eslint-config-next": "16.1.1",
+		"jsdom": "^29.1.1",
 		"prettier": "^3.7.4",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"tailwindcss": "^4",
 		"tsx": "^4.22.3",
-		"typescript": "^5"
+		"typescript": "^5",
+		"vitest": "^4.1.10"
 	},
 	"ignoreScripts": [
 		"sharp",

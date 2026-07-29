@@ -1,0 +1,73 @@
+query GetStreamerPage($slug: String!) {
+	Streamers(where: { slug: { equals: $slug } }, limit: 1) {
+		docs {
+			id
+			name
+			realName
+			slug
+			nicknames {
+				id
+				nickname
+			}
+			avatar {
+				url
+			}
+			banner {
+				url
+			}
+			blocks {
+				... on Hero {
+					id
+					blockType
+					title
+					subtitle
+				}
+				... on YoutubeEmbed {
+					id
+					blockType
+					url
+					caption
+				}
+				... on Quote {
+					id
+					blockType
+					text
+					author
+				}
+			}
+			squads {
+				docs {
+					id
+					role
+					joinDate
+					leaveDate
+					squad {
+						id
+						name
+						slug
+						logo {
+							url
+						}
+					}
+				}
+			}
+			epochs {
+				docs {
+					id
+					roleInEpoch
+					epoch {
+						id
+						title
+						dateStart
+						dateEnd
+						squad {
+							id
+							name
+							slug
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -293,5 +293,25 @@
 	},
 	"video": {
 		"notFound": "Видео не найдено или удалено."
+	},
+	"squadCard": {
+		"members": "{count, plural, one {# участник} few {# участника} many {# участников} other {# участника}}",
+		"epochs": "{count, plural, one {# эпоха} few {# эпохи} many {# эпох} other {# эпохи}}"
+	},
+	"squadPage": {
+		"tabs": {
+			"members": "Участники",
+			"epochs": "Эпохи",
+			"events": "События",
+			"charts": "Статистика",
+			"about": "История"
+		}
+	},
+	"streamerPage": {
+		"epochsSidebar": {
+			"title": "Эпохи",
+			"empty": "Эпохи не найдены",
+			"ongoing": "по н. в."
+		}
 	}
 }

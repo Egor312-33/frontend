@@ -1,13 +1,17 @@
+// src/components/squads/SquadCard.tsx
 'use client'
 
 import { type Variants, motion } from 'framer-motion'
 import { ArrowUpRight, CalendarRange, Layers, Users } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { SquadCardForView } from '@/types/squad'
+import type { GetSquadsPageQuery } from '@/shared/gql/cms/graphql'
+import { formatPeriod } from '@/utils/format-period'
 
-import { pluralRu } from '@/utils/plural-ru'
+type SquadDoc = NonNullable<GetSquadsPageQuery['Squads']>['docs'][number]
+type StreamerLite = NonNullable<NonNullable<SquadDoc['currentMembers']>['docs'][number]['streamer']>
 
 const cardVariants: Variants = {
 	hidden: { opacity: 0, y: 18 },
@@ -18,18 +22,23 @@ const cardVariants: Variants = {
 	}
 }
 
-function formatPeriod(squad: SquadCardForView): string | null {
-	if (!squad.activeSince) return null
-	const start = new Date(squad.activeSince).getFullYear()
-	if (squad.isActive || !squad.activeUntil) return `с ${start} г.`
-	const end = new Date(squad.activeUntil).getFullYear()
-	return start === end ? `${start} г.` : `${start}–${end}`
-}
+export function SquadCard({ squad }: { squad: SquadDoc }) {
+	const epochs = squad.epochs?.docs ?? []
+	const activeSince = epochs[0]?.dateStart ?? null
+	const isActive = epochs.length > 0 && !epochs[epochs.length - 1]?.dateEnd
+	const activeUntil = isActive ? null : (epochs[epochs.length - 1]?.dateEnd ?? null)
+	const period = formatPeriod(activeSince, isActive, activeUntil)
+	const epochsCount = epochs.length
 
-export function SquadCard({ squad }: { squad: SquadCardForView }) {
-	const period = formatPeriod(squad)
-	const hiddenAvatars = squad.currentMembersCount - squad.memberAvatars.length
+	const members = squad.currentMembers?.docs ?? []
+	const currentMembersCount = members.length
+	const avatars = members
+		.slice(0, 5)
+		.map(m => m.streamer)
+		.filter((s): s is StreamerLite => s != null)
+	const hiddenAvatars = currentMembersCount - avatars.length
 
+	const t = useTranslations('squadCard')
 	return (
 		<motion.div variants={cardVariants} className='h-full'>
 			<Link
@@ -40,7 +49,7 @@ export function SquadCard({ squad }: { squad: SquadCardForView }) {
 					{squad.banner?.url ? (
 						<Image
 							src={squad.banner.url}
-							alt={squad.banner.alt || squad.name}
+							alt={squad.banner?.alt || squad.name}
 							fill
 							sizes='(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw'
 							className='object-cover transition-transform duration-500 group-hover:scale-105'
@@ -50,7 +59,7 @@ export function SquadCard({ squad }: { squad: SquadCardForView }) {
 					)}
 					<div className='from-card absolute inset-0 bg-gradient-to-t via-transparent to-transparent' />
 
-					{squad.isActive && (
+					{isActive && (
 						<span className='border-border/50 bg-card/80 absolute top-3 right-3 flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium backdrop-blur'>
 							<span className='relative flex h-2 w-2'>
 								<span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60' />
@@ -67,7 +76,7 @@ export function SquadCard({ squad }: { squad: SquadCardForView }) {
 							<div className='ring-card bg-card relative h-18 w-18 overflow-hidden rounded-2xl shadow-lg ring-4'>
 								<Image
 									src={squad.logo.url}
-									alt={squad.logo.alt || squad.name}
+									alt={squad.logo?.alt || squad.name}
 									fill
 									sizes='72px'
 									className='object-cover'
@@ -86,12 +95,11 @@ export function SquadCard({ squad }: { squad: SquadCardForView }) {
 					<div className='text-muted-foreground mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm'>
 						<span className='flex items-center gap-1.5'>
 							<Users className='h-4 w-4' />
-							{squad.currentMembersCount}{' '}
-							{pluralRu(squad.currentMembersCount, 'участник', 'участника', 'участников')}
+							{t('members', { count: currentMembersCount })}
 						</span>
 						<span className='flex items-center gap-1.5'>
 							<Layers className='h-4 w-4' />
-							{squad.epochsCount} {pluralRu(squad.epochsCount, 'эпоха', 'эпохи', 'эпох')}
+							{t('epochs', { count: epochsCount })}
 						</span>
 						{period && (
 							<span className='flex items-center gap-1.5'>
@@ -101,10 +109,10 @@ export function SquadCard({ squad }: { squad: SquadCardForView }) {
 						)}
 					</div>
 
-					{squad.memberAvatars.length > 0 && (
+					{avatars.length > 0 && (
 						<div className='mt-auto flex items-center pt-4'>
 							<div className='flex -space-x-2'>
-								{squad.memberAvatars.map(member =>
+								{avatars.map(member =>
 									member.avatar?.url ? (
 										<div
 											key={member.id}

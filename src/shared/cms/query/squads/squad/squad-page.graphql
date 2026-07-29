@@ -1,0 +1,78 @@
+query GetSquadPage($slug: String) {
+	Squads(where: { slug: { equals: $slug } }, limit: 1) {
+		docs {
+			id
+			name
+			slug
+			logo {
+				url
+				alt
+			}
+			banner {
+				url
+				alt
+			}
+			history
+
+			currentMembers: members(where: { leaveDate: { exists: false } }) {
+				docs {
+					id
+					role
+					joinDate
+					streamer {
+						id
+						name
+						slug
+						avatar {
+							url
+							alt
+						}
+					}
+				}
+			}
+
+			pastMembers: members(where: { leaveDate: { exists: true } }) {
+				docs {
+					id
+					role
+					joinDate
+					leaveDate
+					streamer {
+						id
+						name
+						slug
+						avatar {
+							url
+							alt
+						}
+					}
+				}
+			}
+			epochs(sort: "-dateStart") {
+				docs {
+					id
+					title
+					slug
+					summary
+					dateStart
+					dateEnd
+					isFeatured
+					coverImage {
+						url
+						alt
+					}
+					events {
+						docs {
+							id
+						}
+					}
+					participants {
+						docs {
+							id
+						}
+					}
+				}
+			}
+		}
+	}
+}

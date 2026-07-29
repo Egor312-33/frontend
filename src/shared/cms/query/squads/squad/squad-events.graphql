@@ -1,0 +1,24 @@
+query GetSquadEvents($epochIds: [JSON]) {
+	Events(where: { epoch: { in: $epochIds } }, sort: "-date", limit: 200) {
+		docs {
+			id
+			title
+			date
+			type
+			description
+			coverImage {
+				url
+				alt
+			}
+			streamersPresent {
+				id
+				name
+				slug
+				avatar {
+					url
+					alt
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+query GetEpochParticipants($streamerId: JSON) {
+	EpochParticipants(where: { streamer: { equals: $streamerId } }, limit: 50) {
+		docs {
+			id
+			roleInEpoch
+			epoch {
+				id
+				title
+				dateStart
+				dateEnd
+				squad {
+					id
+					name
+					slug
+				}
+			}
+		}
+	}
+}

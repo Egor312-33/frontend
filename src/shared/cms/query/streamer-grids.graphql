@@ -1,0 +1,50 @@
+query GetStreamerGrids($streamerId: JSON) {
+	StreamGrids(where: { participants__streamer: { equals: $streamerId } }) {
+		docs {
+			id
+			title
+			type
+			cover {
+				url
+				alt
+			}
+			events(where: { streamersPresent: { equals: $streamerId } }, sort: "-date") {
+				docs {
+					id
+					title
+					date
+					type
+					description
+					contentBlocks {
+						... on EventYoutube {
+							id
+							blockType
+							url
+							caption
+						}
+						... on EventQuote {
+							id
+							blockType
+							text
+							author
+						}
+						... on EventReport {
+							id
+							blockType
+							title
+							htmlReport
+						}
+						... on EventSMC {
+							id
+							blockType
+							videoSlug
+							videoId
+							videoTitle
+							caption
+						}
+					}
+				}
+			}
+		}
+	}
+}
